@@ -22,6 +22,9 @@ public class MerlinGame extends Game {
     public boolean sound = true;
     public static int[] maxLevel = {1, 1, 1, 1};
 
+    public int currentPhase = -1;
+    public int currentFirstLevel = -1;
+
 
     public MenuScreen getMenuScreen() {
         if (menuScreen == null) {
@@ -53,7 +56,7 @@ public class MerlinGame extends Game {
 
         // Start game at menu screen
         loadMenuScreen();
-        //setMaxLevel(0, 9);
+        setMaxLevel(3, 90);
 
 
     }

@@ -33,6 +33,15 @@ public class StoryScreenController extends Controller {
     public StoryScreenController(Game game) {
         super(game, Constants.WIDTH, Constants.HEIGHT);
         Gdx.input.setCatchBackKey(true);
+
+        if (((MerlinGame)game).currentPhase != -1) {
+            int currentFirstLevel = ((MerlinGame)game).currentFirstLevel;
+            selectPhase(((MerlinGame)game).currentPhase);
+            move(currentFirstLevel);
+            this.mode = MODE_LEVEL;
+        } else{
+            this.mode = MODE_PHASE;
+        }
     }
 
     public void update(float deltaTime) {
@@ -158,7 +167,9 @@ public class StoryScreenController extends Controller {
     @Override
     protected void init() {
         createGameObjects();
-        mode = MODE_PHASE;
+
+
+
     }
 
     public void touch(float x, float y) {
@@ -179,12 +190,14 @@ public class StoryScreenController extends Controller {
 
 
         } else if (mode == MODE_LEVEL) {
+            System.out.println("Touching on MODE_LEVEL");
             for (AbstractGameObject btn : list) {
                 if (btnLevels.contains(btn, true)) {
                     loadStory(((LevelItem) btn).levelNum);
                 } else if (arrowLeft == btn) {
                     move(-18);
                 } else if (arrowRight == btn) {
+                    System.out.println("Touching ARROW RIGHT on MODE_LEVEL "+firstLevel);
                     move(18);
                 }
 
@@ -193,7 +206,9 @@ public class StoryScreenController extends Controller {
     }
 
     private void move(int desp) {
+        System.out.println(desp);
         firstLevel += desp;
+        ((MerlinGame) game).currentFirstLevel = firstLevel;
         updateButtons();
         showArrows();
     }
@@ -218,6 +233,9 @@ public class StoryScreenController extends Controller {
 
         mode = MODE_LEVEL;
 
+        ((MerlinGame) game).currentPhase = num;
+        ((MerlinGame) game).currentFirstLevel = firstLevel;
+
 
     }
 
@@ -235,6 +253,8 @@ public class StoryScreenController extends Controller {
     }
 
     private void showSelectPhase() {
+        arrowLeft.visible = false;
+        arrowRight.visible = false;
 
         bg.visible = false;
 

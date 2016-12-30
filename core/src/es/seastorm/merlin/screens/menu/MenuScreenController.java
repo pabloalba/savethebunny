@@ -179,7 +179,8 @@ public class MenuScreenController extends Controller {
 
 
     private void startStory() {
-
+        ((MerlinGame) game).currentPhase = -1;
+        ((MerlinGame) game).currentFirstLevel = -1;
         ((MerlinGame) game).loadStoryScreen();
     }
 
