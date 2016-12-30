@@ -56,7 +56,7 @@ public class MerlinGame extends Game {
 
         // Start game at menu screen
         loadMenuScreen();
-        setMaxLevel(3, 90);
+        //setMaxLevel(3, 90);
 
 
     }
