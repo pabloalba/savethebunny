@@ -54,6 +54,9 @@ public class Animal extends SimpleGameObject {
             this.position.x = desiredPosition.x;
             this.position.y = desiredPosition.y;
         }
+
+
+
     }
 
     public void labyrintCoords(float x, float y, boolean teleport) {
@@ -80,7 +83,7 @@ public class Animal extends SimpleGameObject {
             this.rotation += rotationVelocity * deltaTime;
         }
 
-
+        this.flip = (this.desiredPosition.x > this.position.x);
     }
 
 
