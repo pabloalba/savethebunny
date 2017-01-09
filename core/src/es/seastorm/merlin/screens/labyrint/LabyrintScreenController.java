@@ -359,14 +359,14 @@ public class LabyrintScreenController extends Controller {
 
 
     Labyrinth generateValidRandomLabyrint() {
-        Engine2 engine = new Engine2();
+        Engine2 engine = new Engine2(2);
         boolean ok = false;
         int i = 0;
         setHelpItemsInvisible();
         int size = 5 + random.nextInt(5);
         while (!ok) {
             System.out.println("---------> " + (i++));
-            labyrinth = createRandomLabyrint(size, size);
+            labyrinth = createRandomLabyrint(size, size, 2);
             drawLabyrint();
 
             ok = engine.startSolveGame(labyrinth);
@@ -982,14 +982,9 @@ public class LabyrintScreenController extends Controller {
     }
 
 
-    private Labyrinth createRandomLabyrint(int width, int height) {
+    private Labyrinth createRandomLabyrint(int width, int height, int numEnemies) {
         generateLabyrintEmpty();
-        labyrinth.enemy = new int[1];
-        labyrinth.enemy[0] = random.nextInt(3);
-        currentEnemy = enemiesList.get(labyrinth.enemy[0]);
         currentEnemy2 = null;
-
-
         dog1.labyrintCoords(100, 100, true);
         dog2.labyrintCoords(100, 100, true);
         fox.labyrintCoords(100, 100, true);
@@ -997,7 +992,22 @@ public class LabyrintScreenController extends Controller {
         dog2.visible = false;
         fox.visible = false;
 
+
+
+        labyrinth.enemy = new int[numEnemies];
+        labyrinth.enemy[0] = random.nextInt(3);
+        currentEnemy = enemiesList.get(labyrinth.enemy[0]);
+
+        if (numEnemies==2){
+            labyrinth.enemy[1] = random.nextInt(3);
+            while (labyrinth.enemy[0] == labyrinth.enemy[1]){
+                labyrinth.enemy[1] = random.nextInt(3);
+            }
+            currentEnemy2 = enemiesList.get(labyrinth.enemy[1]);
+            currentEnemy2.visible = true;
+        }
         currentEnemy.visible = true;
+
 
         labyrinth.minMoves = 0;
 
@@ -1007,6 +1017,11 @@ public class LabyrintScreenController extends Controller {
 
         labyrinth.enemyPosition[0].x = random.nextInt(width) + despX;
         labyrinth.enemyPosition[0].y = random.nextInt(height) + despY;
+
+        if (numEnemies==2) {
+            labyrinth.enemyPosition[1].x = random.nextInt(width) + despX;
+            labyrinth.enemyPosition[1].y = random.nextInt(height) + despY;
+        }
 
 
         labyrinth.playerPosition.x = random.nextInt(width) + despX;

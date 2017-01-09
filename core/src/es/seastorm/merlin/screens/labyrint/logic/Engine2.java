@@ -12,40 +12,57 @@ import es.seastorm.merlin.assets.GameAssets;
 import es.seastorm.merlin.gameobjects.Animal;
 
 public class Engine2 {
-    Animal enemy, player, door;
-    Animal enemyOriginal, playerOriginal, doorOriginal;
+    Animal enemy1, enemy2, player, door;
 
     Labyrinth labyrinth;
     ArrayList<Position> positions;
     ArrayList<Integer> movements;
     ArrayList<Integer> bestSolution;
 
-    float playerPositionX, playerPositionY, enemyPositionX, enemyPositionY, exitPositionX, exitPositionY;
+    float playerPositionX, playerPositionY, enemyPositionX, enemyPositionY, exitPositionX, exitPositionY, enemy2PositionX, enemy2PositionY;
 
 
-    public Engine2() {
+    public Engine2(int numEnemies) {
 
         this.player = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BUNNY), Constants.ANIMAL_BUNNY);
-        this.enemy = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_DOG1), Constants.ANIMAL_DOG1);
+        this.enemy1 = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_DOG1), Constants.ANIMAL_DOG1);
+
+        if (numEnemies == 2) {
+            this.enemy2 = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_DOG1), Constants.ANIMAL_DOG1);
+        } else {
+            this.enemy2 = null;
+        }
+
         this.door = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BURROW), Constants.ANIMAL_BURROW);
-
-        this.playerOriginal = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BUNNY), Constants.ANIMAL_BUNNY);
-        this.enemyOriginal = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_DOG1), Constants.ANIMAL_DOG1);
-        this.doorOriginal = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BURROW), Constants.ANIMAL_BURROW);
-
-
     }
 
     public boolean startSolveGame(Labyrinth labyrinth) {
-        if (labyrinth.enemy[0] == Constants.ANIMAL_FOX) {
-            enemy.numMoves = 3;
-        } else {
-            enemy.numMoves = 2;
-        }
         this.labyrinth = labyrinth;
+        enemy1.id = labyrinth.enemy[0];
+
+
+        if (labyrinth.enemy[0] == Constants.ANIMAL_FOX) {
+            enemy1.numMoves = 3;
+        } else {
+            enemy1.numMoves = 2;
+        }
+
+        if (this.enemy2 != null) {
+            enemy2.id = labyrinth.enemy[1];
+            if (labyrinth.enemy[1] == Constants.ANIMAL_FOX) {
+                enemy2.numMoves = 3;
+            } else {
+                enemy2.numMoves = 2;
+            }
+            this.enemy2.labyrintCoords(labyrinth.enemyPosition[1].x + 1, labyrinth.enemyPosition[1].y + 1, true);
+            this.enemy2PositionX = labyrinth.enemyPosition[1].x;
+            this.enemy2PositionY = labyrinth.enemyPosition[1].y;
+        }
+
 
         this.player.labyrintCoords(labyrinth.playerPosition.x + 1, labyrinth.playerPosition.y + 1, true);
-        this.enemy.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
+        this.enemy1.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
+
         this.door.labyrintCoords(labyrinth.exitPosition.x + 1, labyrinth.exitPosition.y + 1, true);
 
         this.playerPositionX = labyrinth.playerPosition.x;
@@ -70,8 +87,14 @@ public class Engine2 {
             labyrinth.exitPosition.x = this.exitPositionX;
             labyrinth.exitPosition.y = this.exitPositionY;
 
+            if (this.enemy2 != null) {
+                labyrinth.enemyPosition[1].x = this.enemy2PositionX;
+                labyrinth.enemyPosition[1].y = this.enemy2PositionY;
+            }
+
+
             this.player.labyrintCoords(labyrinth.playerPosition.x + 1, labyrinth.playerPosition.y + 1, true);
-            this.enemy.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
+            this.enemy1.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
             this.door.labyrintCoords(labyrinth.exitPosition.x + 1, labyrinth.exitPosition.y + 1, true);
             labyrinth.minMoves = bestSolution.size();
             System.out.println(toString());
@@ -84,7 +107,7 @@ public class Engine2 {
         int x = (int) this.playerPositionX;
         int y = (int) this.playerPositionY;
         positions = new ArrayList<Position>();
-        positions.add(new Position(x, y, 0, 0, 0));
+        positions.add(new Position(x, y, 0, 0, 0, 0, 0));
         for (int i = 0; i < bestSolution.size(); i++) {
             if (bestSolution.get(i) != Constants.DIRECTION_PASS) {
                 if (bestSolution.get(i) == Constants.DIRECTION_UP) {
@@ -103,7 +126,7 @@ public class Engine2 {
                     }
                 }
 
-                positions.add(new Position(x, y, 0, 0, 0));
+                positions.add(new Position(x, y, 0, 0, 0, 0, 0));
             }
         }
         return false;
@@ -116,7 +139,14 @@ public class Engine2 {
             return;
         }
 
-        Position p = new Position(player.getCoordX(), player.getCoordY(), enemy.getCoordX(), enemy.getCoordY(),
+        int e2x = -1;
+        int e2y = -1;
+        if (enemy2 != null) {
+            e2x = enemy2.getCoordX();
+            e2y = enemy2.getCoordY();
+        }
+
+        Position p = new Position(player.getCoordX(), player.getCoordY(), enemy1.getCoordX(), enemy1.getCoordY(), e2x, e2y,
                 movements.size());
         Position old = positionVisited(p);
         if (old != null) {
@@ -136,17 +166,32 @@ public class Engine2 {
             for (int dir = 0; dir < 5; dir++) {
                 int px = player.getCoordX();
                 int py = player.getCoordY();
-                int ex = enemy.getCoordX();
-                int ey = enemy.getCoordY();
+                int ex = enemy1.getCoordX();
+                int ey = enemy1.getCoordY();
+                e2x = -1;
+                e2y = -1;
+
+                if (enemy2 != null) {
+                    e2x = enemy2.getCoordX();
+                    e2y = enemy2.getCoordY();
+                }
 
                 movements.add(dir);
 
                 boolean ok = movePlayer(labyrinth, player, dir);
 
                 if (ok) {
-                    for (int i = 0; i < enemy.numMoves; i++) {
-                        moveEnemy(labyrinth, player, enemy);
+                    for (int i = 0; i < enemy1.numMoves; i++) {
+                        moveEnemy(labyrinth, player, enemy1);
                     }
+
+                    if (enemy2 != null) {
+                        System.out.println("Moving: "+enemy2.numMoves);
+                        for (int i = 0; i < enemy2.numMoves; i++) {
+                            moveEnemy(labyrinth, player, enemy2);
+                        }
+                    }
+
                     if (!checkFinalState()) {
                         solveGame();
                     }
@@ -154,15 +199,18 @@ public class Engine2 {
 
                 // Undo move
                 player.labyrintCoords(px, py, true);
-                enemy.labyrintCoords(ex, ey, true);
+                enemy1.labyrintCoords(ex, ey, true);
                 movements.remove(movements.size() - 1);
+                if (enemy2 != null) {
+                    enemy2.labyrintCoords(e2x, e2y, true);
+                }
             }
         }
         return;
     }
 
     private boolean checkFinalState() {
-        if (player.sameCoordinates(enemy)) {
+        if (player.sameCoordinates(enemy1) || player.sameCoordinates(enemy2)) {
             return true;
         } else if (player.sameCoordinates(door)) {
             if ((bestSolution.size() == 0)
@@ -197,7 +245,11 @@ public class Engine2 {
         }
         txt.append("\n");
         txt.append("Player: " + player.getCoordX() + ", " + player.getCoordY() + "\n");
-        txt.append("Enemy: " + enemy.getCoordX() + ", " + enemy.getCoordY() + "\n");
+        txt.append("Enemy1 ("+enemy1.id+"): " + enemy1.getCoordX() + ", " + enemy1.getCoordY() + "\n");
+        if (enemy2 != null) {
+            txt.append("Enemy2 (" + enemy2.id + "): " + enemy2.getCoordX() + ", " + enemy2.getCoordY() + "\n");
+        }
+
         txt.append("Exit: " + door.getCoordX() + ", " + door.getCoordY() + "\n");
         txt.append("\n\n");
 
