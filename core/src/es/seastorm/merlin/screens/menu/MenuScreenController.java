@@ -49,9 +49,9 @@ public class MenuScreenController extends Controller {
 
         bunny = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BUNNY), Constants.ANIMAL_BUNNY);
         bunny.position.x = -200;
-        bunny.position.y = 605;
+        bunny.position.y = 635;
         bunny.desiredPosition.x = Constants.WIDTH + 150;
-        bunny.desiredPosition.y = 605;
+        bunny.desiredPosition.y = 635;
 
 
         enemies = new Animal[3];
@@ -61,11 +61,11 @@ public class MenuScreenController extends Controller {
 
 
         enemies[0].position.x = -200;
-        enemies[0].position.y = 605;
+        enemies[0].position.y = 635;
         enemies[1].position.x = -200;
-        enemies[1].position.y = 605;
+        enemies[1].position.y = 635;
         enemies[2].position.x = -200;
-        enemies[2].position.y = 605;
+        enemies[2].position.y = 635;
 
         enemies[0].visible = false;
         enemies[1].visible = false;
@@ -76,7 +76,7 @@ public class MenuScreenController extends Controller {
         addGameObject(enemies[1]);
         addGameObject(enemies[2]);
 
-        selectEnemy(Constants.WIDTH + 150, 605);
+        selectEnemy(Constants.WIDTH + 150, 635);
 
 
         btnPlay = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_PLAY));
@@ -125,9 +125,9 @@ public class MenuScreenController extends Controller {
         Utils.moveAnimal(bunny, deltaTime);
         Utils.moveAnimal(enemy, deltaTime);
         if (bunny.position.x == bunny.desiredPosition.x && bunny.position.y == bunny.desiredPosition.y) {
-            float y = 605;
+            float y = 635;
             if (random.nextBoolean()) {
-                y = 465;
+                y = 0;
             }
 
             bunny.position.y = y;
