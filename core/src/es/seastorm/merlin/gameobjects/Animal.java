@@ -88,7 +88,7 @@ public class Animal extends SimpleGameObject {
 
 
     public boolean sameCoordinates(Animal a) {
-        return ((this.getCoordX() == a.getCoordX()) && (this.getCoordY() == a.getCoordY()));
+        return ((a != null) && (this.getCoordX() == a.getCoordX()) && (this.getCoordY() == a.getCoordY()));
     }
 
     @Override

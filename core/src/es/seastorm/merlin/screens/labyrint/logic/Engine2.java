@@ -45,13 +45,13 @@ public class Engine2 {
         this.labyrinth = labyrinth;
 
         this.player.labyrintCoords(labyrinth.playerPosition.x + 1, labyrinth.playerPosition.y + 1, true);
-        this.enemy.labyrintCoords(labyrinth.enemyPosition.x + 1, labyrinth.enemyPosition.y + 1, true);
+        this.enemy.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
         this.door.labyrintCoords(labyrinth.exitPosition.x + 1, labyrinth.exitPosition.y + 1, true);
 
         this.playerPositionX = labyrinth.playerPosition.x;
         this.playerPositionY = labyrinth.playerPosition.y;
-        this.enemyPositionX = labyrinth.enemyPosition.x;
-        this.enemyPositionY = labyrinth.enemyPosition.y;
+        this.enemyPositionX = labyrinth.enemyPosition[0].x;
+        this.enemyPositionY = labyrinth.enemyPosition[0].y;
         this.exitPositionX = labyrinth.exitPosition.x;
         this.exitPositionY = labyrinth.exitPosition.y;
 
@@ -65,13 +65,13 @@ public class Engine2 {
         if ((bestSolution.size()) > minMoves && (difficult())) {
             labyrinth.playerPosition.x = this.playerPositionX;
             labyrinth.playerPosition.y = this.playerPositionY;
-            labyrinth.enemyPosition.x = this.enemyPositionX;
-            labyrinth.enemyPosition.y = this.enemyPositionY;
+            labyrinth.enemyPosition[0].x = this.enemyPositionX;
+            labyrinth.enemyPosition[0].y = this.enemyPositionY;
             labyrinth.exitPosition.x = this.exitPositionX;
             labyrinth.exitPosition.y = this.exitPositionY;
 
             this.player.labyrintCoords(labyrinth.playerPosition.x + 1, labyrinth.playerPosition.y + 1, true);
-            this.enemy.labyrintCoords(labyrinth.enemyPosition.x + 1, labyrinth.enemyPosition.y + 1, true);
+            this.enemy.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
             this.door.labyrintCoords(labyrinth.exitPosition.x + 1, labyrinth.exitPosition.y + 1, true);
             labyrinth.minMoves = bestSolution.size();
             System.out.println(toString());

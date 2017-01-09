@@ -51,7 +51,7 @@ public class LabyrintScreenController extends Controller {
     private Vector2 lastPointTouch = new Vector2();
 
 
-    Animal bunny, dog1, dog2, fox, burrow, currentEnemy;
+    Animal bunny, dog1, dog2, fox, burrow, currentEnemy, currentEnemy2;
     Array<Animal> enemiesList;
     int enemyMoves = 0;
     int mode = MODE_EDIT;
@@ -97,6 +97,7 @@ public class LabyrintScreenController extends Controller {
                 if (enemyMoves < 2) {
                     thinkDog1();
                 } else {
+                    enemyMoves = 0;
                     thinkDog2();
                 }
             }
@@ -107,6 +108,7 @@ public class LabyrintScreenController extends Controller {
                 if (enemyMoves < 2) {
                     thinkDog2();
                 } else {
+                    enemyMoves = 0;
                     thinkFox();
                 }
             }
@@ -382,6 +384,7 @@ public class LabyrintScreenController extends Controller {
                 labyrinth = deSerializeLabyrint(section, level);
             }
             currentEnemy = dog1;
+            currentEnemy2 = null;
             dog1.visible = true;
             drawLabyrint();
             mode = MODE_EDIT;
@@ -578,8 +581,11 @@ public class LabyrintScreenController extends Controller {
         labyrinth.playerPosition.x = 1;
         labyrinth.playerPosition.y = 1;
 
-        labyrinth.enemyPosition.x = 1;
-        labyrinth.enemyPosition.y = 1;
+        labyrinth.enemyPosition[0].x = 1;
+        labyrinth.enemyPosition[0].y = 1;
+
+        labyrinth.enemyPosition[1].x = 1;
+        labyrinth.enemyPosition[1].y = 1;
 
         labyrinth.exitPosition.x = 1;
         labyrinth.exitPosition.y = 1;
@@ -589,7 +595,10 @@ public class LabyrintScreenController extends Controller {
 
     void drawLabyrint() {
         bunny.labyrintCoords(labyrinth.playerPosition.x + 1, labyrinth.playerPosition.y + 1, true);
-        currentEnemy.labyrintCoords(labyrinth.enemyPosition.x + 1, labyrinth.enemyPosition.y + 1, true);
+        currentEnemy.labyrintCoords(labyrinth.enemyPosition[0].x + 1, labyrinth.enemyPosition[0].y + 1, true);
+        if (currentEnemy2 != null) {
+            currentEnemy2.labyrintCoords(labyrinth.enemyPosition[1].x + 1, labyrinth.enemyPosition[1].y + 1, true);
+        }
         burrow.labyrintCoords(labyrinth.exitPosition.x + 1, labyrinth.exitPosition.y + 1, true);
 
 
@@ -681,7 +690,7 @@ public class LabyrintScreenController extends Controller {
 
     private void checkEnd() {
         if (!isEditing) {
-            if (bunny.sameCoordinates(currentEnemy)) {
+            if (bunny.sameCoordinates(currentEnemy) || bunny.sameCoordinates(currentEnemy2)) {
                 lose();
             } else if (bunny.sameCoordinates(burrow)) {
                 win();
@@ -896,8 +905,8 @@ public class LabyrintScreenController extends Controller {
                 labyrinth.exitPosition.x = cx;
                 labyrinth.exitPosition.y = cy;
             } else if (currentEdit.equals(editDog)) {
-                labyrinth.enemyPosition.x = cx;
-                labyrinth.enemyPosition.y = cy;
+                labyrinth.enemyPosition[0].x = cx;
+                labyrinth.enemyPosition[0].y = cy;
             }
 
 
@@ -911,22 +920,34 @@ public class LabyrintScreenController extends Controller {
         generateLabyrintEmpty();
         JsonValue root = new JsonReader().parse(Constants.LEVEL_LIST[section][level]);
 
-
-        labyrinth.enemy = root.get("enemy").asIntArray();
-        currentEnemy = enemiesList.get(labyrinth.enemy[0]);
-        dog1.labyrintCoords(100, 100, true);
-        dog2.labyrintCoords(100, 100, true);
-        fox.labyrintCoords(100, 100, true);
         dog1.visible = false;
         dog2.visible = false;
         fox.visible = false;
 
+        labyrinth.enemy = root.get("enemy").asIntArray();
+        currentEnemy = enemiesList.get(labyrinth.enemy[0]);
         currentEnemy.visible = true;
+
+        dog1.labyrintCoords(100, 100, true);
+        dog2.labyrintCoords(100, 100, true);
+        fox.labyrintCoords(100, 100, true);
 
         labyrinth.minMoves = root.get("minMoves").asInt();
 
-        labyrinth.enemyPosition.x = root.get("enemyPosition").get("x").asInt();
-        labyrinth.enemyPosition.y = root.get("enemyPosition").get("y").asInt();
+        labyrinth.enemyPosition[0].x = root.get("enemyPosition").get("x").asInt();
+        labyrinth.enemyPosition[0].y = root.get("enemyPosition").get("y").asInt();
+
+
+        if (labyrinth.enemy.length ==2) {
+            currentEnemy2 = enemiesList.get(labyrinth.enemy[1]);
+            currentEnemy2.visible = true;
+            labyrinth.enemyPosition[1].x = root.get("enemyPosition2").get("x").asInt();
+            labyrinth.enemyPosition[1].y = root.get("enemyPosition2").get("y").asInt();
+        } else {
+            currentEnemy2 = null;
+            labyrinth.enemyPosition[1].x = -1;
+            labyrinth.enemyPosition[1].y = -1;
+        }
 
 
         labyrinth.playerPosition.x = root.get("playerPosition").get("x").asInt();
@@ -966,6 +987,7 @@ public class LabyrintScreenController extends Controller {
         labyrinth.enemy = new int[1];
         labyrinth.enemy[0] = random.nextInt(3);
         currentEnemy = enemiesList.get(labyrinth.enemy[0]);
+        currentEnemy2 = null;
 
 
         dog1.labyrintCoords(100, 100, true);
@@ -983,8 +1005,8 @@ public class LabyrintScreenController extends Controller {
         int despY = (int) Math.floor((Constants.LABYRINT_HEIGHT - height) / 2);
 
 
-        labyrinth.enemyPosition.x = random.nextInt(width) + despX;
-        labyrinth.enemyPosition.y = random.nextInt(height) + despY;
+        labyrinth.enemyPosition[0].x = random.nextInt(width) + despX;
+        labyrinth.enemyPosition[0].y = random.nextInt(height) + despY;
 
 
         labyrinth.playerPosition.x = random.nextInt(width) + despX;

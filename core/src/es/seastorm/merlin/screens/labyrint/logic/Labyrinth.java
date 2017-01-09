@@ -17,7 +17,10 @@ public class Labyrinth implements java.io.Serializable {
     public int minMoves;
 
     public Vector2 playerPosition = new Vector2();
-    public Vector2 enemyPosition = new Vector2();
+    public Vector2[] enemyPosition = {
+            new Vector2(),
+            new Vector2()
+    };
     public Vector2 exitPosition = new Vector2();
 
     public Square getSquare(int x, int y) {
@@ -105,14 +108,20 @@ public class Labyrinth implements java.io.Serializable {
         txt.append(",y:");
         txt.append((int) playerPosition.y);
         txt.append("},enemyPosition:{x:");
-        txt.append((int) enemyPosition.x);
+        txt.append((int) enemyPosition[0].x);
         txt.append(",y:");
-        txt.append((int) enemyPosition.y);
+        txt.append((int) enemyPosition[0].y);
         txt.append("},exitPosition:{x:");
         txt.append((int) exitPosition.x);
         txt.append(",y:");
         txt.append((int) exitPosition.y);
+        txt.append("},enemyPosition2:{x:");
+        txt.append((int) enemyPosition[1].x);
+        txt.append(",y:");
+        txt.append((int) enemyPosition[1].y);
         txt.append("}");
+
+
 
         txt.append("}");
         return txt.toString();
