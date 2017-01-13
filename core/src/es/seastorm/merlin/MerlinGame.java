@@ -6,7 +6,10 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.I18NBundle;
 
+import java.util.Locale;
 import java.util.Random;
 
 import es.seastorm.merlin.assets.GameAssets;
@@ -17,6 +20,9 @@ import es.seastorm.merlin.screens.story.StoryScreen;
 public class MerlinGame extends Game {
     private MenuScreen menuScreen = null;
     private LabyrintScreen labyrintScreen = null;
+    private AssetManager assetManager;
+
+    public static I18NBundle textBundle;
 
     public boolean music = true;
     public boolean sound = true;
@@ -47,8 +53,17 @@ public class MerlinGame extends Game {
         // Set Libgdx log level
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
+
         // Load rest of assets
-        GameAssets.instance.init(new AssetManager());
+        this.assetManager = new AssetManager();
+        GameAssets.instance.init(this.assetManager);
+        //this.assetManager.load("i18n/savethebunny", I18NBundle.class);
+        //this.textBundle = assetManager.get("i18n/savethebunny", I18NBundle.class);
+
+
+        FileHandle baseFileHandle = Gdx.files.internal("i18n/savethebunny");
+        this.textBundle = I18NBundle.createBundle(baseFileHandle);
+
 
 
         this.music = getMusic();

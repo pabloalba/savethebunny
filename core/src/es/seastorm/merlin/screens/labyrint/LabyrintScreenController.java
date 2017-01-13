@@ -444,7 +444,7 @@ public class LabyrintScreenController extends Controller {
             if (level == 0) {
                 pos = Utils.coordsToScreen(2, 5);
                 helpItems.get(0).initialize(
-                        "This is Merlin the bunny.\nYou can move him by touching an adjacent square.\nBut he can't move trough walls!",
+                        "HELP_0_0_0",
                         Utils.coordsToScreen(2, 5),
                         bunny,
                         pos.x - 17,
@@ -453,7 +453,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(3, 4);
                 helpItems.get(1).initialize(
-                        "This is Lucio the dog.\nHe wants to eat you!\n(Don't worry, on this level he is locked)",
+                        "HELP_0_0_1",
                         Utils.coordsToScreen(2, 2),
                         bunny,
                         pos.x - 17,
@@ -461,7 +461,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 helpItems.get(2).initialize(
-                        "Lucio is twice as fast as you!",
+                        "HELP_0_0_2",
                         Utils.coordsToScreen(3, 2),
                         bunny,
                         pos.x - 17,
@@ -470,7 +470,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(5, 3);
                 helpItems.get(3).initialize(
-                        "But he isn't very smart,\nso you can always trick him",
+                        "HELP_0_0_3",
                         Utils.coordsToScreen(6, 3),
                         bunny,
                         pos.x - 17,
@@ -479,7 +479,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(6, 5);
                 helpItems.get(4).initialize(
-                        "Your mission is to exit\nthe level trough the burrow",
+                        "HELP_0_0_4",
                         Utils.coordsToScreen(6, 4),
                         bunny,
                         pos.x - 17,
@@ -489,7 +489,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 1) {
                 pos = Utils.coordsToScreen(5, 2);
                 helpItems.get(0).initialize(
-                        "Lucio prefers horizontal moves\nbefore vertical ones",
+                        "HELP_0_1_0",
                         Utils.coordsToScreen(5, 5),
                         bunny,
                         pos.x - 17,
@@ -498,7 +498,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(3, 5);
                 helpItems.get(1).initialize(
-                        "If you move now to the left,\nLucio will move to the left first\nand only then down",
+                        "HELP_0_1_1",
                         Utils.coordsToScreen(4, 5),
                         bunny,
                         pos.x - 17,
@@ -507,7 +507,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(3, 4);
                 helpItems.get(2).initialize(
-                        "You've trapped him!\nYou can now go to the burrow\nwithout being eaten",
+                        "HELP_0_1_2",
                         Utils.coordsToScreen(3, 5),
                         bunny,
                         pos.x - 17,
@@ -516,7 +516,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 2) {
                 pos = Utils.coordsToScreen(3, 5);
                 helpItems.get(0).initialize(
-                        "If you touch Merlin you skip your movement,\nand let Lucio move without\nmoving yourself",
+                        "HELP_0_2_0",
                         Utils.coordsToScreen(3, 5),
                         bunny,
                         pos.x - 17,
@@ -526,7 +526,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 3) {
                 pos = Utils.coordsToScreen(4, 5);
                 helpItems.get(0).initialize(
-                        "Remember: Lucio will allways try to move close to you.\n He will never move away from you.\nAnd he prefers to move left and right\nbefore going up or down",
+                        "HELP_0_3_0",
                         Utils.coordsToScreen(4, 5),
                         bunny,
                         pos.x - 17,
@@ -535,7 +535,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 4) {
                 pos = Utils.coordsToScreen(3, 5);
                 helpItems.get(0).initialize(
-                        "Do you remember how to make Lucio move\nwithout moving yourself?",
+                        "HELP_0_4_0",
                         Utils.coordsToScreen(3, 5),
                         bunny,
                         pos.x - 17,
@@ -545,7 +545,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 9) {
                 pos = Utils.coordsToScreen(2, 2);
                 helpItems.get(0).initialize(
-                        "This is Shadow the dog\nShadow will allways move up and down\nbefore going left of right",
+                        "HELP_0_9_0",
                         Utils.coordsToScreen(3, 2),
                         bunny,
                         pos.x - 17,
@@ -556,7 +556,7 @@ public class LabyrintScreenController extends Controller {
             if (level == 0) {
                 pos = Utils.coordsToScreen(6, 2);
                 helpItems.get(0).initialize(
-                        "This is Todd the fox.\nHe is incredibly rapid!\nHe can move three times for every one of your movements!",
+                        "HELP_1_0_0",
                         Utils.coordsToScreen(3, 3),
                         bunny,
                         pos.x - 17,
@@ -565,7 +565,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(2, 4);
                 helpItems.get(1).initialize(
-                        "Same as Lucio,\n Todd prefers horizontal moves before vertical ones.\n So you can trap him too!",
+                        "HELP_1_0_1",
                         Utils.coordsToScreen(2, 6),
                         bunny,
                         pos.x - 17,
@@ -576,7 +576,7 @@ public class LabyrintScreenController extends Controller {
             if (level == 0) {
                 pos = Utils.coordsToScreen(2, 5);
                 helpItems.get(0).initialize(
-                        "This is madness! There are two of them now!\nTodd the fox is the fastest. he will move allways first\nNext, Lucio will made his movement",
+                        "HELP_2_0_0",
                         Utils.coordsToScreen(6, 6),
                         bunny,
                         pos.x - 17,
@@ -586,7 +586,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 1) {
                 pos = Utils.coordsToScreen(3, 5);
                 helpItems.get(0).initialize(
-                        "At least, they get in the way of one another. When you\nmove here, Todd won't allow Lucio to move",
+                        "HELP_2_1_0",
                         Utils.coordsToScreen(2, 5),
                         bunny,
                         pos.x - 17,
@@ -596,7 +596,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 2) {
                 pos = Utils.coordsToScreen(5, 6);
                 helpItems.get(0).initialize(
-                        "Shadow is the slowest. She will always move last",
+                        "HELP_2_2_0",
                         Utils.coordsToScreen(6, 4),
                         bunny,
                         pos.x - 17,

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 import dragongames.base.gameobject.SimpleGameObject;
+import es.seastorm.merlin.MerlinGame;
 import es.seastorm.merlin.assets.GameAssets;
 import es.seastorm.merlin.cache.Cache;
 import es.seastorm.merlin.gameobjects.Animal;
@@ -23,7 +24,7 @@ public class HelpItem extends SimpleGameObject {
         this.target.x = target.x;
         this.target.y = target.y;
         this.bunny = bunny;
-        this.text = text;
+        this.text = MerlinGame.textBundle.get(text);
         this.visible = false;
         this.position.x = positionX;
         this.position.y = positionY;
