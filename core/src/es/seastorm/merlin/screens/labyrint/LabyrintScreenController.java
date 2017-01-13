@@ -622,13 +622,17 @@ public class LabyrintScreenController extends Controller {
             Square square = labyrinth.getSquare(x, y);
             if (square.isLimitUp()) {
                 barrier = wallsH.get(numWallH);
-                barrier.position = Utils.coordsToScreen(x, y - 1);
+                Vector2 pos = Utils.coordsToScreen(x, y - 1);
+                barrier.position.x = pos.x;
+                barrier.position.y = pos.y -10;
                 barrier.visible = true;
                 numWallH++;
             }
             if (square.isLimitRight()) {
                 barrier = wallsV.get(numWallV);
-                barrier.position = Utils.coordsToScreen(x + 1, y);
+                Vector2 pos = Utils.coordsToScreen(x +1, y);
+                barrier.position.x = pos.x - 10;
+                barrier.position.y = pos.y;
                 barrier.visible = true;
                 numWallV++;
             }
