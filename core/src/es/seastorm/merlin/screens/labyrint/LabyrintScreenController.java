@@ -88,7 +88,7 @@ public class LabyrintScreenController extends Controller {
             Utils.moveAnimal(bunny, deltaTime);
             if (bunny.position.x == bunny.desiredPosition.x && bunny.position.y == bunny.desiredPosition.y) {
                 enemyMoves = 0;
-                thinkDog1();
+                thinkFox();
             }
         } else if (mode == MODE_DOG1) {
             Utils.moveAnimal(dog1, deltaTime);
@@ -108,8 +108,7 @@ public class LabyrintScreenController extends Controller {
                 if (enemyMoves < 2) {
                     thinkDog2();
                 } else {
-                    enemyMoves = 0;
-                    thinkFox();
+                    checkEnd();
                 }
             }
         } else if (mode == MODE_FOX) {
@@ -119,7 +118,8 @@ public class LabyrintScreenController extends Controller {
                 if (enemyMoves < 3) {
                     thinkFox();
                 } else {
-                    checkEnd();
+                    enemyMoves = 0;
+                    thinkDog1();
                 }
             }
         }
@@ -192,9 +192,10 @@ public class LabyrintScreenController extends Controller {
         fox.drawShadow = true;
         burrow = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BURROW), Constants.ANIMAL_BURROW);
 
+        enemiesList.add(fox);
         enemiesList.add(dog1);
         enemiesList.add(dog2);
-        enemiesList.add(fox);
+
 
         dog1.visible = false;
         dog2.visible = false;
@@ -363,7 +364,7 @@ public class LabyrintScreenController extends Controller {
         boolean ok = false;
         int i = 0;
         setHelpItemsInvisible();
-        int size = 5 + random.nextInt(5);
+        int size = 5;// + random.nextInt(5);
         while (!ok) {
             System.out.println("---------> " + (i++));
             labyrinth = createRandomLabyrint(size, size, 2);
@@ -571,7 +572,40 @@ public class LabyrintScreenController extends Controller {
                         pos.y - 20
                 );
             }
+        } else if (currentSection == 2) {
+            if (level == 0) {
+                pos = Utils.coordsToScreen(2, 5);
+                helpItems.get(0).initialize(
+                        "This is madness! There are two of them now!\nTodd the fox is the fastest. he will move allways first\nNext, Lucio will made his movement",
+                        Utils.coordsToScreen(6, 6),
+                        bunny,
+                        pos.x - 17,
+                        pos.y - 20
+                );
+
+            } else if (level == 1) {
+                pos = Utils.coordsToScreen(3, 5);
+                helpItems.get(0).initialize(
+                        "At least, they get in the way of one another. When you\nmove here, Todd won't allow Lucio to move",
+                        Utils.coordsToScreen(2, 5),
+                        bunny,
+                        pos.x - 17,
+                        pos.y - 20
+                );
+
+            } else if (level == 2) {
+                pos = Utils.coordsToScreen(5, 6);
+                helpItems.get(0).initialize(
+                        "Shadow is the slowest. She will always move last",
+                        Utils.coordsToScreen(6, 4),
+                        bunny,
+                        pos.x - 17,
+                        pos.y - 20
+                );
+
+            }
         }
+
     }
 
     void generateLabyrintEmpty() {
@@ -589,6 +623,9 @@ public class LabyrintScreenController extends Controller {
 
         labyrinth.exitPosition.x = 1;
         labyrinth.exitPosition.y = 1;
+
+        labyrinth.enemy = new int[1];
+        labyrinth.enemy[0] = 0;
 
     }
 
@@ -662,7 +699,11 @@ public class LabyrintScreenController extends Controller {
     // Priority horizontal
     private void thinkDog1() {
         if (dog1.visible) {
-            Engine2.moveEnemy(labyrinth, bunny, dog1);
+            if (currentEnemy == dog1) {
+                Engine2.moveEnemy(labyrinth, bunny, dog1, currentEnemy2);
+            } else {
+                Engine2.moveEnemy(labyrinth, bunny, dog1, currentEnemy);
+            }
             mode = MODE_DOG1;
         } else {
             thinkDog2();
@@ -673,10 +714,14 @@ public class LabyrintScreenController extends Controller {
     // Priority vertical
     private void thinkDog2() {
         if (dog2.visible) {
-            Engine2.moveEnemy(labyrinth, bunny, dog2);
+            if (currentEnemy == dog2) {
+                Engine2.moveEnemy(labyrinth, bunny, dog2, currentEnemy2);
+            } else {
+                Engine2.moveEnemy(labyrinth, bunny, dog2, currentEnemy);
+            }
             mode = MODE_DOG2;
         } else {
-            thinkFox();
+            checkEnd();
         }
 
     }
@@ -684,10 +729,14 @@ public class LabyrintScreenController extends Controller {
     // Priority horizontal
     private void thinkFox() {
         if (fox.visible) {
-            Engine2.moveEnemy(labyrinth, bunny, fox);
+            if (currentEnemy == fox) {
+                Engine2.moveEnemy(labyrinth, bunny, fox, currentEnemy2);
+            } else {
+                Engine2.moveEnemy(labyrinth, bunny, fox, currentEnemy);
+            }
             mode = MODE_FOX;
         } else {
-            checkEnd();
+            thinkDog1();
         }
 
     }
@@ -999,14 +1048,22 @@ public class LabyrintScreenController extends Controller {
 
 
         labyrinth.enemy = new int[numEnemies];
-        labyrinth.enemy[0] = random.nextInt(3);
+        labyrinth.enemy[0] = 1;//random.nextInt(3);
         currentEnemy = enemiesList.get(labyrinth.enemy[0]);
 
         if (numEnemies==2){
-            labyrinth.enemy[1] = random.nextInt(3);
+            labyrinth.enemy[1] = 2;//random.nextInt(3);
             while (labyrinth.enemy[0] == labyrinth.enemy[1]){
                 labyrinth.enemy[1] = random.nextInt(3);
             }
+
+            if (labyrinth.enemy[1] < labyrinth.enemy[0]){
+                int a = labyrinth.enemy[1];
+                labyrinth.enemy[1] = labyrinth.enemy[0];
+                labyrinth.enemy[0] = a;
+            }
+
+            currentEnemy = enemiesList.get(labyrinth.enemy[0]);
             currentEnemy2 = enemiesList.get(labyrinth.enemy[1]);
             currentEnemy2.visible = true;
         }

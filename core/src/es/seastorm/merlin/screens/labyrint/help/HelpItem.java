@@ -49,7 +49,7 @@ public class HelpItem extends SimpleGameObject {
     public void render(SpriteBatch batch) {
         super.render(batch);
 
-        if (this.visible) {
+        if (this.visible && this.text!=null) {
             String[] lines = text.split("\n");
             float y = 80 + (lines.length * 15);
             for (String line : lines) {
