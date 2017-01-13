@@ -453,7 +453,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(3, 4);
                 helpItems.get(1).initialize(
-                        "This is Lucio the dog.\nHe wants to eat you!",
+                        "This is Lucio the dog.\nHe wants to eat you!\n(Don't worry, on this level he is locked)",
                         Utils.coordsToScreen(2, 2),
                         bunny,
                         pos.x - 17,
@@ -470,7 +470,7 @@ public class LabyrintScreenController extends Controller {
 
                 pos = Utils.coordsToScreen(5, 3);
                 helpItems.get(3).initialize(
-                        "But he isn't very smart,\nso you can allways trick him",
+                        "But he isn't very smart,\nso you can always trick him",
                         Utils.coordsToScreen(6, 3),
                         bunny,
                         pos.x - 17,
@@ -657,7 +657,7 @@ public class LabyrintScreenController extends Controller {
         for (int i = 0; i < Constants.LABYRINT_WIDTH * Constants.LABYRINT_HEIGHT; i++) {
 
             Square square = labyrinth.getSquare(x, y);
-            if (square.isLimitUp()) {
+            if ((square.isLimitUp()) && (y > 0)) {
                 barrier = wallsH.get(numWallH);
                 Vector2 pos = Utils.coordsToScreen(x, y - 1);
                 barrier.position.x = pos.x;
@@ -665,7 +665,7 @@ public class LabyrintScreenController extends Controller {
                 barrier.visible = true;
                 numWallH++;
             }
-            if (square.isLimitRight()) {
+            if (square.isLimitRight() && (x < Constants.LABYRINT_WIDTH - 1)) {
                 barrier = wallsV.get(numWallV);
                 Vector2 pos = Utils.coordsToScreen(x +1, y);
                 barrier.position.x = pos.x - 10;
