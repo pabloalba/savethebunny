@@ -247,21 +247,21 @@ public class LabyrintScreenController extends Controller {
 
         starBig = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_BIG));
         starBig.position.x = 570;
-        starBig.position.y = 315;
+        starBig.position.y = 325;
         starBig.visible = false;
         addGameObject(starBig);
 
 
         starSmall1 = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_SMALL));
-        starSmall1.position.x = 468;
-        starSmall1.position.y = 295;
+        starSmall1.position.x = 450;
+        starSmall1.position.y = 296;
         starSmall1.visible = false;
         addGameObject(starSmall1);
 
 
         starSmall2 = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_SMALL));
-        starSmall2.position.x = 688;
-        starSmall2.position.y = 295;
+        starSmall2.position.x = 704;
+        starSmall2.position.y = 296;
         starSmall2.visible = false;
         addGameObject(starSmall2);
 
@@ -761,13 +761,13 @@ public class LabyrintScreenController extends Controller {
             }
             mode = MODE_ENDING;
             btnReload.position.x = 644;
-            btnReload.position.y = 125;
+            btnReload.position.y = 100;
             btnHome.position.x = 460;
-            btnHome.position.y = 125;
+            btnHome.position.y = 100;
             btnLevels.position.x = 552;
-            btnLevels.position.y = 125;
+            btnLevels.position.y = 100;
             btnNext.position.x = 736;
-            btnNext.position.y = 125;
+            btnNext.position.y = 100;
 
             Cache.backgroundBlack.visible = true;
             levelComplete.visible = true;
@@ -808,11 +808,11 @@ public class LabyrintScreenController extends Controller {
             Cache.backgroundBlack.visible = true;
 
             btnHome.position.x = 500;
-            btnHome.position.y = 200;
+            btnHome.position.y = 100;
             btnLevels.position.x = 600;
-            btnLevels.position.y = 200;
+            btnLevels.position.y = 100;
             btnReload.position.x = 700;
-            btnReload.position.y = 200;
+            btnReload.position.y = 100;
 
             Cache.backgroundBlack.visible = true;
             levelLose.visible = true;

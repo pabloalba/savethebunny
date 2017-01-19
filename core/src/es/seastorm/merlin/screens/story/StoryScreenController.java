@@ -133,8 +133,8 @@ public class StoryScreenController extends Controller {
 
 
         for (int i = 0; i < 18; i++) {
-            float posX = 120 + bg.position.x + ((row + 1) * gapX) + ((row) * btn.dimension.x);
-            float posY = (bg.position.y - 40) + ((column + 1) * gapY) + ((column) * btn.dimension.y);
+            float posX = 90 + bg.position.x + ((row + 1) * gapX) + ((row) * btn.dimension.x);
+            float posY = bg.position.y + ((column + 1) * gapY) + ((column) * btn.dimension.y);
 
 
             btn = new LevelItem(false, i, "", posX, posY);
@@ -190,14 +190,12 @@ public class StoryScreenController extends Controller {
 
 
         } else if (mode == MODE_LEVEL) {
-            System.out.println("Touching on MODE_LEVEL");
             for (AbstractGameObject btn : list) {
                 if (btnLevels.contains(btn, true)) {
                     loadStory(((LevelItem) btn).levelNum);
-                } else if (arrowLeft == btn) {
+                } else if (arrowLeft.visible && arrowLeft == btn) {
                     move(-18);
-                } else if (arrowRight == btn) {
-                    System.out.println("Touching ARROW RIGHT on MODE_LEVEL "+firstLevel);
+                } else if (arrowRight.visible && arrowRight == btn) {
                     move(18);
                 }
 
