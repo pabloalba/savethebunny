@@ -79,9 +79,9 @@ public class Engine2 {
         bestSolution = new ArrayList<Integer>();
 
         solveGame();
-        int minMoves = 5;//10 + labyrinth.getHeight();
-        int maxMoves = 10;
-        if ((bestSolution.size() > minMoves) && (bestSolution.size() < maxMoves)) {
+        int minMoves = 5 + labyrinth.getHeight();
+        int maxMoves = 40;
+        if ((bestSolution.size() > minMoves) && (bestSolution.size() < maxMoves) && difficult()) {
             labyrinth.playerPosition.x = this.playerPositionX;
             labyrinth.playerPosition.y = this.playerPositionY;
             labyrinth.enemyPosition[0].x = this.enemyPositionX;
@@ -184,13 +184,13 @@ public class Engine2 {
 
                 if (ok) {
                     for (int i = 0; i < enemy1.numMoves; i++) {
-                        moveEnemy(labyrinth, player, enemy1, enemy2);
+                        moveEnemy(labyrinth, player, enemy1, enemy2, true);
                     }
 
                     if (enemy2 != null) {
-                        System.out.println("Moving: " + enemy2.numMoves);
                         for (int i = 0; i < enemy2.numMoves; i++) {
-                            moveEnemy(labyrinth, player, enemy2, enemy1);
+                            moveEnemy(labyrinth, player, enemy2, enemy1, true);
+                            System.out.println(enemy2.position.x+", "+enemy2.position.y);
                         }
                     }
 
@@ -273,32 +273,32 @@ public class Engine2 {
         return texts[movement];
     }
 
-    public static void moveEnemy(Labyrinth labyrinth, Animal player, Animal enemy, Animal enemy2) {
+    public static void moveEnemy(Labyrinth labyrinth, Animal player, Animal enemy, Animal enemy2, boolean teleport) {
         if ((enemy.id == Constants.ANIMAL_DOG1) || (enemy.id == Constants.ANIMAL_FOX)) {
             if (
                     (player.getCoordX() > enemy.getCoordX()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_RIGHT)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX() + 1, enemy.getCoordY()))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX() + 1, enemy.getCoordY(), false);
+                enemy.labyrintCoords(enemy.getCoordX() + 1, enemy.getCoordY(), teleport);
             } else if (
                     (player.getCoordX() < enemy.getCoordX()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_LEFT)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX() - 1, enemy.getCoordY()))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX() - 1, enemy.getCoordY(), false);
+                enemy.labyrintCoords(enemy.getCoordX() - 1, enemy.getCoordY(), teleport);
             } else if (
                     (player.getCoordY() < enemy.getCoordY()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_UP)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX(), enemy.getCoordY() - 1))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() - 1, false);
+                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() - 1, teleport);
             } else if (
                     (player.getCoordY() > enemy.getCoordY()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_DOWN)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX(), enemy.getCoordY() + 1))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() + 1, false);
+                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() + 1, teleport);
             }
         } else if (enemy.id == Constants.ANIMAL_DOG2) {
             if (
@@ -306,25 +306,25 @@ public class Engine2 {
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_UP)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX(), enemy.getCoordY() - 1))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() - 1, false);
+                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() - 1, teleport);
             } else if (
                     (player.getCoordY() > enemy.getCoordY()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_DOWN)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX(), enemy.getCoordY() + 1))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() + 1, false);
+                enemy.labyrintCoords(enemy.getCoordX(), enemy.getCoordY() + 1, teleport);
             } else if (
                     (player.getCoordX() > enemy.getCoordX()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_RIGHT)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX() + 1, enemy.getCoordY()))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX() + 1, enemy.getCoordY(), false);
+                enemy.labyrintCoords(enemy.getCoordX() + 1, enemy.getCoordY(), teleport);
             } else if (
                     (player.getCoordX() < enemy.getCoordX()) &&
                             (labyrinth.canMove(enemy.getCoordX(), enemy.getCoordY(), Constants.DIRECTION_LEFT)) &&
                             ((enemy2 == null) || (!enemy2.position.equals(Utils.coordsToScreen(enemy.getCoordX() - 1, enemy.getCoordY()))))
                     ) {
-                enemy.labyrintCoords(enemy.getCoordX() - 1, enemy.getCoordY(), false);
+                enemy.labyrintCoords(enemy.getCoordX() - 1, enemy.getCoordY(), teleport);
             }
         }
     }

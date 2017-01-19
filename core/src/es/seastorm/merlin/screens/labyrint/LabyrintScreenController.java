@@ -4,10 +4,8 @@ package es.seastorm.merlin.screens.labyrint;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
@@ -364,7 +362,7 @@ public class LabyrintScreenController extends Controller {
         boolean ok = false;
         int i = 0;
         setHelpItemsInvisible();
-        int size = 5;// + random.nextInt(5);
+        int size = 5 + random.nextInt(5);
         while (!ok) {
             System.out.println("---------> " + (i++));
             labyrinth = createRandomLabyrint(size, size, 2);
@@ -661,13 +659,13 @@ public class LabyrintScreenController extends Controller {
                 barrier = wallsH.get(numWallH);
                 Vector2 pos = Utils.coordsToScreen(x, y - 1);
                 barrier.position.x = pos.x;
-                barrier.position.y = pos.y -10;
+                barrier.position.y = pos.y - 10;
                 barrier.visible = true;
                 numWallH++;
             }
             if (square.isLimitRight() && (x < Constants.LABYRINT_WIDTH - 1)) {
                 barrier = wallsV.get(numWallV);
-                Vector2 pos = Utils.coordsToScreen(x +1, y);
+                Vector2 pos = Utils.coordsToScreen(x + 1, y);
                 barrier.position.x = pos.x - 10;
                 barrier.position.y = pos.y;
                 barrier.visible = true;
@@ -700,9 +698,9 @@ public class LabyrintScreenController extends Controller {
     private void thinkDog1() {
         if (dog1.visible) {
             if (currentEnemy == dog1) {
-                Engine2.moveEnemy(labyrinth, bunny, dog1, currentEnemy2);
+                Engine2.moveEnemy(labyrinth, bunny, dog1, currentEnemy2, false);
             } else {
-                Engine2.moveEnemy(labyrinth, bunny, dog1, currentEnemy);
+                Engine2.moveEnemy(labyrinth, bunny, dog1, currentEnemy, false);
             }
             mode = MODE_DOG1;
         } else {
@@ -715,9 +713,9 @@ public class LabyrintScreenController extends Controller {
     private void thinkDog2() {
         if (dog2.visible) {
             if (currentEnemy == dog2) {
-                Engine2.moveEnemy(labyrinth, bunny, dog2, currentEnemy2);
+                Engine2.moveEnemy(labyrinth, bunny, dog2, currentEnemy2, false);
             } else {
-                Engine2.moveEnemy(labyrinth, bunny, dog2, currentEnemy);
+                Engine2.moveEnemy(labyrinth, bunny, dog2, currentEnemy, false);
             }
             mode = MODE_DOG2;
         } else {
@@ -730,9 +728,9 @@ public class LabyrintScreenController extends Controller {
     private void thinkFox() {
         if (fox.visible) {
             if (currentEnemy == fox) {
-                Engine2.moveEnemy(labyrinth, bunny, fox, currentEnemy2);
+                Engine2.moveEnemy(labyrinth, bunny, fox, currentEnemy2, false);
             } else {
-                Engine2.moveEnemy(labyrinth, bunny, fox, currentEnemy);
+                Engine2.moveEnemy(labyrinth, bunny, fox, currentEnemy, false);
             }
             mode = MODE_FOX;
         } else {
@@ -991,7 +989,7 @@ public class LabyrintScreenController extends Controller {
         labyrinth.enemyPosition[0].y = root.get("enemyPosition").get("y").asInt();
 
 
-        if (labyrinth.enemy.length ==2) {
+        if (labyrinth.enemy.length == 2) {
             currentEnemy2 = enemiesList.get(labyrinth.enemy[1]);
             currentEnemy2.visible = true;
             labyrinth.enemyPosition[1].x = root.get("enemyPosition2").get("x").asInt();
@@ -1046,18 +1044,17 @@ public class LabyrintScreenController extends Controller {
         fox.visible = false;
 
 
-
         labyrinth.enemy = new int[numEnemies];
-        labyrinth.enemy[0] = 1;//random.nextInt(3);
+        labyrinth.enemy[0] = 0; //random.nextInt(3);
         currentEnemy = enemiesList.get(labyrinth.enemy[0]);
 
-        if (numEnemies==2){
-            labyrinth.enemy[1] = 2;//random.nextInt(3);
-            while (labyrinth.enemy[0] == labyrinth.enemy[1]){
+        if (numEnemies == 2) {
+            labyrinth.enemy[1] = 1;//random.nextInt(3);
+            while (labyrinth.enemy[0] == labyrinth.enemy[1]) {
                 labyrinth.enemy[1] = random.nextInt(3);
             }
 
-            if (labyrinth.enemy[1] < labyrinth.enemy[0]){
+            if (labyrinth.enemy[1] < labyrinth.enemy[0]) {
                 int a = labyrinth.enemy[1];
                 labyrinth.enemy[1] = labyrinth.enemy[0];
                 labyrinth.enemy[0] = a;
@@ -1079,7 +1076,7 @@ public class LabyrintScreenController extends Controller {
         labyrinth.enemyPosition[0].x = random.nextInt(width) + despX;
         labyrinth.enemyPosition[0].y = random.nextInt(height) + despY;
 
-        if (numEnemies==2) {
+        if (numEnemies == 2) {
             labyrinth.enemyPosition[1].x = random.nextInt(width) + despX;
             labyrinth.enemyPosition[1].y = random.nextInt(height) + despY;
         }
@@ -1104,10 +1101,10 @@ public class LabyrintScreenController extends Controller {
                     labyrinth.addWall(x + despX, y + despY, Constants.DIRECTION_UP);
                 }
 
-                if ((y == height - 1) || (random.nextInt(100) > 75)) {
+                if ((y == height - 1) || (random.nextInt(100) > 85)) {
                     labyrinth.addWall(x + despX, y + despY, Constants.DIRECTION_DOWN);
                 }
-                if ((x == width - 1) || (random.nextInt(100) > 75)) {
+                if ((x == width - 1) || (random.nextInt(100) > 85)) {
                     labyrinth.addWall(x + despX, y + despY, Constants.DIRECTION_RIGHT);
                 }
             }
