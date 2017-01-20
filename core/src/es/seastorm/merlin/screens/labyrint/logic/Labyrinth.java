@@ -2,9 +2,6 @@ package es.seastorm.merlin.screens.labyrint.logic;
 
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Json;
-
-import java.util.HashMap;
 
 import es.seastorm.merlin.Constants;
 
@@ -122,13 +119,16 @@ public class Labyrinth implements java.io.Serializable {
         txt.append("}");
 
 
-
         txt.append("}");
         return txt.toString();
     }
 
 
     public boolean canMove(int x, int y, int direction) {
+        if (x < 0 || x > Constants.LABYRINT_WIDTH || y < 0 || y > Constants.LABYRINT_HEIGHT) {
+            return false;
+        }
+
         switch (direction) {
             case Constants.DIRECTION_UP:
                 return !squares[x][y].limitUp;

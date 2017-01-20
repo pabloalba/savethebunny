@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import dragongames.base.controller.Controller;
@@ -33,7 +34,7 @@ public class LabyrintScreenController extends Controller {
 
     LabyrintScreen screen;
     private static final int NUM_WALLS = 60;
-    private static final int NUM_HELP = 5;
+    private static final int NUM_HELP = 6;
 
     private static int MODE_PLAYER = 0;
     private static int MODE_BUNNY = 1;
@@ -61,6 +62,7 @@ public class LabyrintScreenController extends Controller {
     Array<SimpleGameObject> wallsH;
     Array<SimpleGameObject> wallsV;
     Array<HelpItem> helpItems;
+    SimpleGameObject btnHint;
 
 
     Labyrinth labyrinth;
@@ -216,6 +218,13 @@ public class LabyrintScreenController extends Controller {
         addGameObject(dog2);
         addGameObject(fox);
 
+
+        btnHint = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_HINT));
+        btnHint.position.x = 1150;
+        btnHint.position.y = 600;
+        addGameObject(btnHint);
+
+
         Cache.backgroundHelp.visible = false;
         addGameObject(Cache.backgroundHelp);
 
@@ -358,17 +367,17 @@ public class LabyrintScreenController extends Controller {
 
 
     Labyrinth generateValidRandomLabyrint() {
-        Engine2 engine = new Engine2(2);
-        boolean ok = false;
+        Engine2 engine = new Engine2(2, 10, 40);
+        ArrayList<Integer> bestSolution = null;
         int i = 0;
         setHelpItemsInvisible();
         int size = 5 + random.nextInt(5);
-        while (!ok) {
+        while (bestSolution == null) {
             System.out.println("---------> " + (i++));
             labyrinth = createRandomLabyrint(size, size, 2);
             drawLabyrint();
-
-            ok = engine.startSolveGame(labyrinth);
+            engine.minMoves = 10 + labyrinth.getHeight();
+            bestSolution = engine.startSolveGame(labyrinth, false);
         }
 
         serializeLabyrint();
@@ -438,10 +447,20 @@ public class LabyrintScreenController extends Controller {
         Cache.backgroundHelp.visible = false;
         resetHelpItems();
         Vector2 pos;
+
+        helpItems.get(0).initialize(
+                "HINT_NO",
+                Utils.coordsToScreen(-1000, -1000),
+                bunny,
+                -1000,
+                -1000
+        );
+
+
         if (currentSection == 0) {
             if (level == 0) {
                 pos = Utils.coordsToScreen(2, 5);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_0_0_0",
                         Utils.coordsToScreen(2, 5),
                         bunny,
@@ -450,7 +469,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 pos = Utils.coordsToScreen(3, 4);
-                helpItems.get(1).initialize(
+                helpItems.get(2).initialize(
                         "HELP_0_0_1",
                         Utils.coordsToScreen(2, 2),
                         bunny,
@@ -458,7 +477,7 @@ public class LabyrintScreenController extends Controller {
                         pos.y - 20
                 );
 
-                helpItems.get(2).initialize(
+                helpItems.get(3).initialize(
                         "HELP_0_0_2",
                         Utils.coordsToScreen(3, 2),
                         bunny,
@@ -467,7 +486,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 pos = Utils.coordsToScreen(5, 3);
-                helpItems.get(3).initialize(
+                helpItems.get(4).initialize(
                         "HELP_0_0_3",
                         Utils.coordsToScreen(6, 3),
                         bunny,
@@ -476,7 +495,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 pos = Utils.coordsToScreen(6, 5);
-                helpItems.get(4).initialize(
+                helpItems.get(5).initialize(
                         "HELP_0_0_4",
                         Utils.coordsToScreen(6, 4),
                         bunny,
@@ -486,7 +505,7 @@ public class LabyrintScreenController extends Controller {
 
             } else if (level == 1) {
                 pos = Utils.coordsToScreen(5, 2);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_0_1_0",
                         Utils.coordsToScreen(5, 5),
                         bunny,
@@ -495,7 +514,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 pos = Utils.coordsToScreen(3, 5);
-                helpItems.get(1).initialize(
+                helpItems.get(2).initialize(
                         "HELP_0_1_1",
                         Utils.coordsToScreen(4, 5),
                         bunny,
@@ -504,7 +523,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 pos = Utils.coordsToScreen(3, 4);
-                helpItems.get(2).initialize(
+                helpItems.get(3).initialize(
                         "HELP_0_1_2",
                         Utils.coordsToScreen(3, 5),
                         bunny,
@@ -513,7 +532,7 @@ public class LabyrintScreenController extends Controller {
                 );
             } else if (level == 2) {
                 pos = Utils.coordsToScreen(3, 5);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_0_2_0",
                         Utils.coordsToScreen(3, 5),
                         bunny,
@@ -523,7 +542,7 @@ public class LabyrintScreenController extends Controller {
 
             } else if (level == 3) {
                 pos = Utils.coordsToScreen(4, 5);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_0_3_0",
                         Utils.coordsToScreen(4, 5),
                         bunny,
@@ -532,7 +551,7 @@ public class LabyrintScreenController extends Controller {
                 );
             } else if (level == 4) {
                 pos = Utils.coordsToScreen(3, 5);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_0_4_0",
                         Utils.coordsToScreen(3, 5),
                         bunny,
@@ -542,7 +561,7 @@ public class LabyrintScreenController extends Controller {
 
             } else if (level == 9) {
                 pos = Utils.coordsToScreen(2, 2);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_0_9_0",
                         Utils.coordsToScreen(3, 2),
                         bunny,
@@ -553,7 +572,7 @@ public class LabyrintScreenController extends Controller {
         } else if (currentSection == 1) {
             if (level == 0) {
                 pos = Utils.coordsToScreen(6, 2);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_1_0_0",
                         Utils.coordsToScreen(3, 3),
                         bunny,
@@ -562,7 +581,7 @@ public class LabyrintScreenController extends Controller {
                 );
 
                 pos = Utils.coordsToScreen(2, 4);
-                helpItems.get(1).initialize(
+                helpItems.get(2).initialize(
                         "HELP_1_0_1",
                         Utils.coordsToScreen(2, 6),
                         bunny,
@@ -573,7 +592,7 @@ public class LabyrintScreenController extends Controller {
         } else if (currentSection == 2) {
             if (level == 0) {
                 pos = Utils.coordsToScreen(2, 5);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_2_0_0",
                         Utils.coordsToScreen(6, 6),
                         bunny,
@@ -583,7 +602,7 @@ public class LabyrintScreenController extends Controller {
 
             } else if (level == 1) {
                 pos = Utils.coordsToScreen(3, 5);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_2_1_0",
                         Utils.coordsToScreen(2, 5),
                         bunny,
@@ -593,7 +612,7 @@ public class LabyrintScreenController extends Controller {
 
             } else if (level == 2) {
                 pos = Utils.coordsToScreen(5, 6);
-                helpItems.get(0).initialize(
+                helpItems.get(1).initialize(
                         "HELP_2_2_0",
                         Utils.coordsToScreen(6, 4),
                         bunny,
@@ -844,33 +863,37 @@ public class LabyrintScreenController extends Controller {
                             ((Box) object).touch();
                             currentBox = (Box) object;
                             break;
+                        } else if (object == btnHint) {
+                            showHint();
+                            break;
                         }
                     }
 
+                    if (currentBox != null) {
+                        int cx = (int) Math.floor(coords.x);
+                        int cy = (int) Math.floor(coords.y);
 
-                    int cx = (int) Math.floor(coords.x);
-                    int cy = (int) Math.floor(coords.y);
+                        boolean moveOk = false;
 
-                    boolean moveOk = false;
-
-                    if (cx == bunny.getCoordX()) {
-                        if (cy - bunny.getCoordY() == -1) {
-                            moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_UP);
-                        } else if (cy - bunny.getCoordY() == 1) {
-                            moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_DOWN);
+                        if (cx == bunny.getCoordX()) {
+                            if (cy - bunny.getCoordY() == -1) {
+                                moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_UP);
+                            } else if (cy - bunny.getCoordY() == 1) {
+                                moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_DOWN);
+                            } else if (cy == bunny.getCoordY()) {
+                                moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_PASS);
+                            }
                         } else if (cy == bunny.getCoordY()) {
-                            moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_PASS);
+                            if (cx - bunny.getCoordX() == -1) {
+                                moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_LEFT);
+                            } else if (cx - bunny.getCoordX() == 1) {
+                                moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_RIGHT);
+                            }
                         }
-                    } else if (cy == bunny.getCoordY()) {
-                        if (cx - bunny.getCoordX() == -1) {
-                            moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_LEFT);
-                        } else if (cx - bunny.getCoordX() == 1) {
-                            moveOk = Engine2.movePlayer(labyrinth, bunny, Constants.DIRECTION_RIGHT);
+                        if (moveOk) {
+                            numMoves++;
+                            mode = MODE_BUNNY;
                         }
-                    }
-                    if (moveOk) {
-                        numMoves++;
-                        mode = MODE_BUNNY;
                     }
                 }
             } else if (mode == MODE_ENDING) {
@@ -909,6 +932,42 @@ public class LabyrintScreenController extends Controller {
                 touchEditing(x, y);
             }
         }
+    }
+
+    private void showHint() {
+        int numEnemies = 1;
+        if (currentEnemy2 != null) {
+            numEnemies = 2;
+        }
+        Engine2 engine = new Engine2(numEnemies, 0, 1000);
+        int minMoves = labyrinth.minMoves;
+
+        labyrinth.playerPosition.x = bunny.getCoordX();
+        labyrinth.playerPosition.y = bunny.getCoordY();
+        labyrinth.enemyPosition[0].x = currentEnemy.getCoordX();
+        labyrinth.enemyPosition[0].y = currentEnemy.getCoordY();
+        labyrinth.exitPosition.x = burrow.getCoordX();
+        labyrinth.exitPosition.y = burrow.getCoordY();
+        if (currentEnemy2 != null) {
+            labyrinth.enemyPosition[1].x = currentEnemy2.getCoordX();
+            labyrinth.enemyPosition[1].y = currentEnemy2.getCoordY();
+        }
+
+        ArrayList<Integer> bestSolution = engine.startSolveGame(labyrinth, false);
+
+        // Do no lost the minMoves from the begining!
+        labyrinth.minMoves = minMoves;
+
+
+        if (bestSolution != null) {
+            String next = MerlinGame.textBundle.get("MOVEMENT_" + bestSolution.get(0));
+            helpItems.get(0).text = MerlinGame.textBundle.format("HINT_YES", bestSolution.size(), next);
+        } else {
+            helpItems.get(0).text = MerlinGame.textBundle.get("HINT_NO");
+        }
+        helpItems.get(0).setTarget(bunny.position.x, bunny.position.y);
+        helpItems.get(0).dismissed = false;
+        setModeHelpOrPlayer();
     }
 
     private void touchEditing(float x, float y) {

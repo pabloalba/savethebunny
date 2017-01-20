@@ -13,7 +13,7 @@ import es.seastorm.merlin.gameobjects.Animal;
 public class HelpItem extends SimpleGameObject {
     Vector2 target = new Vector2(-100, -100);
     Animal bunny;
-    String text;
+    public String text;
     public boolean dismissed = false;
 
     public HelpItem() {
@@ -50,7 +50,7 @@ public class HelpItem extends SimpleGameObject {
     public void render(SpriteBatch batch) {
         super.render(batch);
 
-        if (this.visible && this.text!=null) {
+        if (this.visible && this.text != null) {
             String[] lines = text.split("\n");
             float y = 80 + (lines.length * 15);
             for (String line : lines) {

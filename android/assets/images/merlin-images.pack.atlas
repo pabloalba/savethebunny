@@ -6,28 +6,28 @@ filter: Nearest,Nearest
 repeat: none
 arrow_left
   rotate: false
-  xy: 1040, 1281
+  xy: 1142, 1281
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 arrow_left2
   rotate: false
-  xy: 860, 1272
+  xy: 962, 1272
   size: 87, 90
   orig: 87, 90
   offset: 0, 0
   index: -1
 arrow_right
   rotate: false
-  xy: 1122, 1281
+  xy: 1224, 1281
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 arrow_right2
   rotate: false
-  xy: 949, 1275
+  xy: 1051, 1275
   size: 89, 87
   orig: 89, 87
   offset: 0, 0
@@ -41,7 +41,7 @@ barrier_h
   index: -1
 barrier_h2
   rotate: false
-  xy: 124, 1262
+  xy: 124, 1255
   size: 80, 5
   orig: 80, 5
   offset: 0, 0
@@ -62,42 +62,49 @@ barrier_v2
   index: -1
 btn_fx
   rotate: false
-  xy: 308, 1271
+  xy: 410, 1271
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_fx2
   rotate: false
-  xy: 400, 1271
+  xy: 502, 1271
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_fx_off
   rotate: false
-  xy: 492, 1271
+  xy: 594, 1271
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_fx_off2
   rotate: false
-  xy: 584, 1271
+  xy: 686, 1271
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
+btn_hint
+  rotate: false
+  xy: 124, 1262
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 btn_home
   rotate: false
-  xy: 1204, 1281
+  xy: 1306, 1281
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 btn_home2
   rotate: false
-  xy: 1532, 1282
+  xy: 1634, 1282
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -160,14 +167,14 @@ btn_level32
   index: -1
 btn_levels
   rotate: false
-  xy: 1286, 1281
+  xy: 1388, 1281
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 btn_levels2
   rotate: false
-  xy: 1614, 1282
+  xy: 1716, 1282
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -188,42 +195,42 @@ btn_lock2
   index: -1
 btn_music
   rotate: false
-  xy: 676, 1271
+  xy: 778, 1271
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_music2
   rotate: false
-  xy: 124, 1269
+  xy: 226, 1269
   size: 90, 93
   orig: 90, 93
   offset: 0, 0
   index: -1
 btn_music_off
   rotate: false
-  xy: 768, 1271
+  xy: 870, 1271
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_music_off2
   rotate: false
-  xy: 216, 1269
+  xy: 318, 1269
   size: 90, 93
   orig: 90, 93
   offset: 0, 0
   index: -1
 btn_next
   rotate: false
-  xy: 1368, 1281
+  xy: 1470, 1281
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 btn_next2
   rotate: false
-  xy: 1696, 1282
+  xy: 1798, 1282
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -251,112 +258,112 @@ btn_play2
   index: -1
 btn_reload
   rotate: false
-  xy: 1450, 1281
+  xy: 1552, 1281
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 btn_reload2
   rotate: false
-  xy: 1778, 1282
+  xy: 1303, 2
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 bunny
   rotate: false
-  xy: 1303, 2
+  xy: 1385, 56
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 burrow
   rotate: false
-  xy: 1385, 56
+  xy: 1409, 172
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 dog1
   rotate: false
-  xy: 1409, 172
+  xy: 1467, 90
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 dog2
   rotate: false
-  xy: 1467, 90
+  xy: 1491, 172
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_edit
   rotate: false
-  xy: 1491, 172
+  xy: 1467, 8
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor1
   rotate: false
-  xy: 1467, 8
+  xy: 1549, 2
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor2
   rotate: false
-  xy: 1549, 2
+  xy: 1631, 2
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor3
   rotate: false
-  xy: 1631, 2
+  xy: 1713, 2
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor4
   rotate: false
-  xy: 1713, 2
+  xy: 1789, 199
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_play
   rotate: false
-  xy: 1789, 199
+  xy: 1789, 117
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_save
   rotate: false
-  xy: 1789, 117
+  xy: 1795, 35
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 floor1
   rotate: false
-  xy: 1795, 35
+  xy: 1871, 199
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 floor2
   rotate: false
-  xy: 1871, 199
+  xy: 1871, 117
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 fox
   rotate: false
-  xy: 1871, 117
+  xy: 1877, 35
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -440,28 +447,21 @@ phase4
   index: -1
 shadow
   rotate: false
-  xy: 1877, 35
+  xy: 1953, 199
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 square
   rotate: false
-  xy: 1953, 206
+  xy: 1953, 124
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow1
   rotate: false
-  xy: 1953, 131
-  size: 73, 73
-  orig: 73, 73
-  offset: 0, 0
-  index: -1
-square_glow2
-  rotate: false
-  xy: 1959, 56
+  xy: 1959, 49
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
@@ -482,27 +482,34 @@ star_small
   index: -1
 
 merlin-images.pack2.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-square_glow3
+square_glow2
   rotate: false
   xy: 2, 2
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
-square_glow4
+square_glow3
   rotate: false
   xy: 77, 2
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
-square_glow5
+square_glow4
   rotate: false
   xy: 152, 2
+  size: 73, 73
+  orig: 73, 73
+  offset: 0, 0
+  index: -1
+square_glow5
+  rotate: false
+  xy: 227, 2
   size: 73, 73
   orig: 73, 73
   offset: 0, 0

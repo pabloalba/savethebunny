@@ -22,8 +22,10 @@ public class Engine2 {
 
     float playerPositionX, playerPositionY, enemyPositionX, enemyPositionY, exitPositionX, exitPositionY, enemy2PositionX, enemy2PositionY;
 
+    public int minMoves = 10;
+    public int maxMoves = 40;
 
-    public Engine2(int numEnemies) {
+    public Engine2(int numEnemies, int minMoves, int maxMoves) {
 
         this.player = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BUNNY), Constants.ANIMAL_BUNNY);
         this.enemy1 = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_DOG1), Constants.ANIMAL_DOG1);
@@ -35,9 +37,11 @@ public class Engine2 {
         }
 
         this.door = new Animal(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BURROW), Constants.ANIMAL_BURROW);
+        this.minMoves = minMoves;
+        this.maxMoves = maxMoves;
     }
 
-    public boolean startSolveGame(Labyrinth labyrinth) {
+    public ArrayList<Integer> startSolveGame(Labyrinth labyrinth, boolean onlyDifficult) {
         this.labyrinth = labyrinth;
         enemy1.id = labyrinth.enemy[0];
 
@@ -79,9 +83,8 @@ public class Engine2 {
         bestSolution = new ArrayList<Integer>();
 
         solveGame();
-        int minMoves = 5 + labyrinth.getHeight();
-        int maxMoves = 40;
-        if ((bestSolution.size() > minMoves) && (bestSolution.size() < maxMoves) && difficult()) {
+
+        if ((bestSolution.size() > minMoves) && (bestSolution.size() < maxMoves) && (!onlyDifficult || difficult())) {
             labyrinth.playerPosition.x = this.playerPositionX;
             labyrinth.playerPosition.y = this.playerPositionY;
             labyrinth.enemyPosition[0].x = this.enemyPositionX;
@@ -100,9 +103,9 @@ public class Engine2 {
             this.door.labyrintCoords(labyrinth.exitPosition.x + 1, labyrinth.exitPosition.y + 1, true);
             labyrinth.minMoves = bestSolution.size();
             System.out.println(toString());
-            return true;
+            return bestSolution;
         }
-        return false;
+        return null;
     }
 
     private boolean difficult() {
@@ -190,7 +193,7 @@ public class Engine2 {
                     if (enemy2 != null) {
                         for (int i = 0; i < enemy2.numMoves; i++) {
                             moveEnemy(labyrinth, player, enemy2, enemy1, true);
-                            System.out.println(enemy2.position.x+", "+enemy2.position.y);
+                            System.out.println(enemy2.position.x + ", " + enemy2.position.y);
                         }
                     }
 
