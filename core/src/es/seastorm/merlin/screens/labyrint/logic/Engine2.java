@@ -23,7 +23,7 @@ public class Engine2 {
     float playerPositionX, playerPositionY, enemyPositionX, enemyPositionY, exitPositionX, exitPositionY, enemy2PositionX, enemy2PositionY;
 
     public int minMoves = 10;
-    public int maxMoves = 40;
+    public int maxMoves = 50;
 
     public Engine2(int numEnemies, int minMoves, int maxMoves) {
 
@@ -52,7 +52,7 @@ public class Engine2 {
             enemy1.numMoves = 2;
         }
 
-        if (this.enemy2 != null) {
+        if (this.enemy2 != null && labyrinth.enemy.length > 1) {
             enemy2.id = labyrinth.enemy[1];
             if (labyrinth.enemy[1] == Constants.ANIMAL_FOX) {
                 enemy2.numMoves = 3;
@@ -193,7 +193,6 @@ public class Engine2 {
                     if (enemy2 != null) {
                         for (int i = 0; i < enemy2.numMoves; i++) {
                             moveEnemy(labyrinth, player, enemy2, enemy1, true);
-                            System.out.println(enemy2.position.x + ", " + enemy2.position.y);
                         }
                     }
 

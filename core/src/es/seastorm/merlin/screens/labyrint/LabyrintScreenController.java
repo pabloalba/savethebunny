@@ -366,14 +366,14 @@ public class LabyrintScreenController extends Controller {
 
 
     Labyrinth generateValidRandomLabyrint() {
-        Engine2 engine = new Engine2(2, 10, 40);
+        Engine2 engine = new Engine2(2, 10, 50);
         ArrayList<Integer> bestSolution = null;
         int i = 0;
         setHelpItemsInvisible();
-        int size = 5 + random.nextInt(5);
+        int size = 4 + random.nextInt(5);
         while (bestSolution == null) {
             System.out.println("---------> " + (i++));
-            labyrinth = createRandomLabyrint(size, size, 2);
+            labyrinth = createRandomLabyrint(size, size, 1);
             drawLabyrint();
             engine.minMoves = 10 + labyrinth.getHeight();
             bestSolution = engine.startSolveGame(labyrinth, false);
@@ -397,7 +397,7 @@ public class LabyrintScreenController extends Controller {
             mode = MODE_EDIT;
         } else {
             if (generateRandom) {
-                int numGenerate = 1;
+                int numGenerate = 9;
                 String[] llist = new String[numGenerate];
                 for (int i = 0; i < numGenerate; i++) {
                     labyrinth = generateValidRandomLabyrint();
@@ -1098,11 +1098,11 @@ public class LabyrintScreenController extends Controller {
 
 
         labyrinth.enemy = new int[numEnemies];
-        labyrinth.enemy[0] = 0; //random.nextInt(3);
+        labyrinth.enemy[0] = 1;//random.nextInt(2);
         currentEnemy = enemiesList.get(labyrinth.enemy[0]);
 
         if (numEnemies == 2) {
-            labyrinth.enemy[1] = 1;//random.nextInt(3);
+            labyrinth.enemy[1] = random.nextInt(3);
             while (labyrinth.enemy[0] == labyrinth.enemy[1]) {
                 labyrinth.enemy[1] = random.nextInt(3);
             }
@@ -1151,10 +1151,10 @@ public class LabyrintScreenController extends Controller {
                     labyrinth.addWall(x + despX, y + despY, Constants.DIRECTION_UP);
                 }
 
-                if ((y == height - 1) || (random.nextInt(100) > 85)) {
+                if ((y == height - 1) || (random.nextInt(100) > 80)) {
                     labyrinth.addWall(x + despX, y + despY, Constants.DIRECTION_DOWN);
                 }
-                if ((x == width - 1) || (random.nextInt(100) > 85)) {
+                if ((x == width - 1) || (random.nextInt(100) > 80)) {
                     labyrinth.addWall(x + despX, y + despY, Constants.DIRECTION_RIGHT);
                 }
             }
