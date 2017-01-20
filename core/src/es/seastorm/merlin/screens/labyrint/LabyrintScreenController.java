@@ -145,7 +145,6 @@ public class LabyrintScreenController extends Controller {
 
 
     public void reset(int section, int level) {
-        System.out.println("Reset " + section + " - " + level);
         currentLevel = level;
         currentSection = section;
         numMoves = 0;
@@ -788,14 +787,9 @@ public class LabyrintScreenController extends Controller {
 
             Cache.backgroundBlack.visible = true;
             levelComplete.visible = true;
-            System.out.println(numMoves + " / " + labyrinth.minMoves);
-            int stars = 0;
-            if (numMoves < labyrinth.minMoves + 4) {
-                starSmall1.visible = true;
-                stars = 1;
-            }
+            int stars = 1;
 
-            if (numMoves < labyrinth.minMoves + 2) {
+            if (numMoves < labyrinth.minMoves + 3) {
                 starBig.visible = true;
                 stars = 2;
             }
@@ -1146,9 +1140,6 @@ public class LabyrintScreenController extends Controller {
 
         labyrinth.exitPosition.x = random.nextInt(width) + despX;
         labyrinth.exitPosition.y = random.nextInt(height) + despY;
-
-
-        System.out.println("Desp: " + despX + ", " + despY);
 
 
         for (int y = 0; y < width; y++) {
