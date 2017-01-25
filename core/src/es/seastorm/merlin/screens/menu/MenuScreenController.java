@@ -80,31 +80,31 @@ public class MenuScreenController extends Controller {
 
 
         btnPlay = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_PLAY));
-        btnPlay.position.x = 800;
-        btnPlay.position.y = 330;
+        btnPlay.position.x = 190;
+        btnPlay.position.y = 20;
         addGameObject(btnPlay);
 
         btnMusic = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_MUSIC));
-        btnMusic.position.x = 870;
-        btnMusic.position.y = 160;
+        btnMusic.position.x = 1155;
+        btnMusic.position.y = 150;
         btnMusic.visible = ((MerlinGame) game).music;
         addGameObject(btnMusic);
 
         btnMusicOff = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_MUSIC_OFF));
-        btnMusicOff.position.x = 870;
-        btnMusicOff.position.y = 160;
+        btnMusicOff.position.x = 1155;
+        btnMusicOff.position.y = 150;
         btnMusicOff.visible = !((MerlinGame) game).music;
         addGameObject(btnMusicOff);
 
         btnFx = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_FX));
-        btnFx.position.x = 1045;
-        btnFx.position.y = 160;
+        btnFx.position.x = 1155;
+        btnFx.position.y = 30;
         btnFx.visible = ((MerlinGame) game).sound;
         addGameObject(btnFx);
 
         btnFxOff = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_FX_OFF));
-        btnFxOff.position.x = 1045;
-        btnFxOff.position.y = 160;
+        btnFxOff.position.x = 1155;
+        btnFxOff.position.y = 30;
         btnFxOff.visible = !((MerlinGame) game).sound;
         addGameObject(btnFxOff);
 
