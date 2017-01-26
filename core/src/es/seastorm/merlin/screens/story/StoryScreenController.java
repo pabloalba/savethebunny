@@ -34,12 +34,12 @@ public class StoryScreenController extends Controller {
         super(game, Constants.WIDTH, Constants.HEIGHT);
         Gdx.input.setCatchBackKey(true);
 
-        if (((MerlinGame)game).currentPhase != -1) {
-            int currentFirstLevel = ((MerlinGame)game).currentFirstLevel;
-            selectPhase(((MerlinGame)game).currentPhase);
+        if (((MerlinGame) game).currentPhase != -1) {
+            int currentFirstLevel = ((MerlinGame) game).currentFirstLevel;
+            selectPhase(((MerlinGame) game).currentPhase);
             move(currentFirstLevel);
             this.mode = MODE_LEVEL;
-        } else{
+        } else {
             this.mode = MODE_PHASE;
         }
     }
@@ -64,47 +64,46 @@ public class StoryScreenController extends Controller {
         //Background
         addGameObject(Cache.backgroundMenu);
 
-        int stars = 0;
-        int maxStars = 0;
-
+        int levels = 0;
         for (int i = 0; i < Constants.LEVEL_LIST[0].length; i++) {
-            stars += ((MerlinGame) game).getStars(0, i);
-            maxStars += 3;
+            if (((MerlinGame) game).getStars(0, i) > 0) {
+                levels++;
+            }
         }
 
 
-        phase1 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE1), 1, stars + "/" + maxStars, "A dog's life", 150, 400);
+        phase1 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE1), 1, levels + "/" + Constants.LEVEL_LIST[0].length, "Dog's life", 150, 400);
         addGameObject(phase1);
 
-        stars = 0;
-        maxStars = 0;
+        levels = 0;
         for (int i = 0; i < Constants.LEVEL_LIST[1].length; i++) {
-            stars += ((MerlinGame) game).getStars(1, i);
-            maxStars += 3;
+            if (((MerlinGame) game).getStars(1, i) > 0) {
+                levels++;
+            }
         }
 
-        phase2 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE2), 2, stars + "/" + maxStars, "Foxy time", 755, 400);
+        phase2 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE2), 2, levels + "/" + Constants.LEVEL_LIST[1].length, "Foxy time", 755, 400);
         addGameObject(phase2);
 
-        stars = 0;
-        maxStars = 0;
+        levels = 0;
         for (int i = 0; i < Constants.LEVEL_LIST[2].length; i++) {
-            stars += ((MerlinGame) game).getStars(2, i);
-            maxStars += 3;
+            if (((MerlinGame) game).getStars(2, i) > 0) {
+                levels++;
+            }
         }
 
 
-        phase3 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE3), 3, stars + "/" + maxStars, "Double it", 150, 20);
+        phase3 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE3), 3, levels + "/" + Constants.LEVEL_LIST[2].length, "Double it", 150, 20);
         addGameObject(phase3);
 
-        stars = 0;
-        maxStars = 0;
+        levels = 0;
         for (int i = 0; i < Constants.LEVEL_LIST[3].length; i++) {
-            stars += ((MerlinGame) game).getStars(3, i);
-            maxStars += 3;
+            if (((MerlinGame) game).getStars(3, i) > 0) {
+                levels++;
+            }
         }
 
-        phase4 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE4), 4, stars + "/" + maxStars, "All in", 755, 20);
+        phase4 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE4), 4, levels + "/" + Constants.LEVEL_LIST[3].length, "All in", 755, 20);
         addGameObject(phase4);
 
         createButtons();
@@ -167,7 +166,6 @@ public class StoryScreenController extends Controller {
     @Override
     protected void init() {
         createGameObjects();
-
 
 
     }
