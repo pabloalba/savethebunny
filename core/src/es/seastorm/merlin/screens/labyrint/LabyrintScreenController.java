@@ -223,6 +223,9 @@ public class LabyrintScreenController extends Controller {
         btnHint.position.y = 600;
         addGameObject(btnHint);
 
+        Cache.backgroundBlack.visible = false;
+        addGameObject(Cache.backgroundBlack);
+
 
         Cache.backgroundHelp.visible = false;
         addGameObject(Cache.backgroundHelp);
@@ -233,10 +236,6 @@ public class LabyrintScreenController extends Controller {
             helpItems.add(hi);
             addGameObject(hi);
         }
-
-
-        Cache.backgroundBlack.visible = false;
-        addGameObject(Cache.backgroundBlack);
 
 
         levelComplete = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.LEVEL_COMPLETE));
@@ -252,21 +251,21 @@ public class LabyrintScreenController extends Controller {
         addGameObject(levelLose);
 
         starBig = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_BIG));
-        starBig.position.x = 570;
-        starBig.position.y = 325;
+        starBig.position.x = 557;
+        starBig.position.y = 296;
         starBig.visible = false;
         addGameObject(starBig);
 
 
         starSmall1 = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_SMALL));
-        starSmall1.position.x = 450;
+        starSmall1.position.x = 443;
         starSmall1.position.y = 296;
         starSmall1.visible = false;
         addGameObject(starSmall1);
 
 
         starSmall2 = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_SMALL));
-        starSmall2.position.x = 704;
+        starSmall2.position.x = 695;
         starSmall2.position.y = 296;
         starSmall2.visible = false;
         addGameObject(starSmall2);
@@ -433,9 +432,11 @@ public class LabyrintScreenController extends Controller {
 
         if (showHelp) {
             mode = MODE_HELP;
+            Cache.backgroundBlack.visible = true;
             Cache.backgroundHelp.visible = true;
         } else {
             mode = MODE_PLAYER;
+            Cache.backgroundBlack.visible = false;
             Cache.backgroundHelp.visible = false;
         }
 
@@ -443,6 +444,7 @@ public class LabyrintScreenController extends Controller {
     }
 
     void showHelp(int level) {
+        Cache.backgroundBlack.visible = false;
         Cache.backgroundHelp.visible = false;
         resetHelpItems();
         Vector2 pos;
@@ -787,6 +789,7 @@ public class LabyrintScreenController extends Controller {
 
             Cache.backgroundBlack.visible = true;
             levelComplete.visible = true;
+            starSmall1.visible = true;
             int stars = 1;
 
             if (numMoves < labyrinth.minMoves + 3) {
@@ -794,7 +797,7 @@ public class LabyrintScreenController extends Controller {
                 stars = 2;
             }
 
-            if (numMoves == labyrinth.minMoves) {
+            if (numMoves <= labyrinth.minMoves) {
                 starSmall2.visible = true;
                 stars = 3;
             }
@@ -917,6 +920,7 @@ public class LabyrintScreenController extends Controller {
 
             } else if (mode == MODE_HELP) {
                 if (y < 170) {
+                    Cache.backgroundBlack.visible = false;
                     Cache.backgroundHelp.visible = false;
                     setHelpItemsInvisible();
                     mode = MODE_PLAYER;
