@@ -60,10 +60,13 @@ public class MerlinGame extends Game {
         //this.assetManager.load("i18n/savethebunny", I18NBundle.class);
         //this.textBundle = assetManager.get("i18n/savethebunny", I18NBundle.class);
 
+        //Preferences prefs = Gdx.app.getPreferences(Constants.PREFERENCES);
+        //prefs.clear();
+        //prefs.flush();
+
 
         FileHandle baseFileHandle = Gdx.files.internal("i18n/savethebunny");
         this.textBundle = I18NBundle.createBundle(baseFileHandle);
-
 
 
         this.music = getMusic();
@@ -104,9 +107,15 @@ public class MerlinGame extends Game {
     }
 
     public void setStars(int section, int level, int stars) {
-        Preferences prefs = Gdx.app.getPreferences(Constants.PREFERENCES);
-        prefs.putInteger("stars_" + section + "_" + level, stars);
-        prefs.flush();
+        int oldStars = getStars(section, level);
+        if (oldStars < stars) {
+            Preferences prefs = Gdx.app.getPreferences(Constants.PREFERENCES);
+            prefs.putInteger("stars_" + section + "_" + level, stars);
+            prefs.flush();
+
+            int treasure = getTreasure();
+            setTreasure(treasure + stars - oldStars);
+        }
     }
 
     public int getStars(int section, int level) {
@@ -137,6 +146,18 @@ public class MerlinGame extends Game {
         prefs.putBoolean("sound", sound);
         prefs.flush();
         this.sound = sound;
+    }
+
+    public int getTreasure() {
+        Preferences prefs = Gdx.app.getPreferences(Constants.PREFERENCES);
+        int treasure = prefs.getInteger("treasure", 0);
+        return treasure;
+    }
+
+    public void setTreasure(int treasure) {
+        Preferences prefs = Gdx.app.getPreferences(Constants.PREFERENCES);
+        prefs.putInteger("treasure", treasure);
+        prefs.flush();
     }
 
 }

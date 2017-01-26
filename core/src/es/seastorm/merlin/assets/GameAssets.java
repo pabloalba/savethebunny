@@ -34,6 +34,7 @@ public class GameAssets extends AssetsKeeper {
     public static final String EDIT_EDIT = "edit_edit";
     public static final String LEVEL_COMPLETE = "level_complete";
     public static final String LEVEL_LOSE = "level_lose";
+    public static final String LEVEL_INFO = "level_info";
     public static final String STAR_SMALL = "star_small";
     public static final String STAR_BIG = "star_big";
     public static final String BTN_HOME = "btn_home";
@@ -55,6 +56,7 @@ public class GameAssets extends AssetsKeeper {
     public static final String SQUARE_GLOW4 = "square_glow4";
     public static final String SQUARE_GLOW5 = "square_glow5";
     public static final String ASSET_BTN_HINT = "btn_hint";
+    public static final String ASSET_BTN_BUY_HINT = "btn_buy_hint";
 
 
     public static final GameAssets instance = new GameAssets();

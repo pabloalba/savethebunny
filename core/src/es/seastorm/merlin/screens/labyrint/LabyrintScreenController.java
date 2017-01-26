@@ -23,6 +23,7 @@ import es.seastorm.merlin.cache.Cache;
 import es.seastorm.merlin.gameobjects.Animal;
 import es.seastorm.merlin.gameobjects.Box;
 import es.seastorm.merlin.screens.labyrint.help.HelpItem;
+import es.seastorm.merlin.screens.labyrint.help.InfoWindow;
 import es.seastorm.merlin.screens.labyrint.logic.Engine2;
 import es.seastorm.merlin.screens.labyrint.logic.Labyrinth;
 import es.seastorm.merlin.screens.labyrint.logic.Square;
@@ -45,6 +46,7 @@ public class LabyrintScreenController extends Controller {
     private static int MODE_CHECK_END = 9;
     private static int MODE_EDIT = 10;
     private static int MODE_HELP = 11;
+    private static int MODE_INFO = 12;
 
     private long lastTouch = 0;
     private Vector2 lastPointTouch = new Vector2();
@@ -62,7 +64,7 @@ public class LabyrintScreenController extends Controller {
     Array<SimpleGameObject> wallsH;
     Array<SimpleGameObject> wallsV;
     Array<HelpItem> helpItems;
-    SimpleGameObject btnHint;
+    SimpleGameObject btnHint, btnBuyHint;
 
 
     Labyrinth labyrinth;
@@ -70,6 +72,7 @@ public class LabyrintScreenController extends Controller {
     SimpleGameObject editFloor1, editFloor2, editFloor3, editFloor4, editMerlin, editBurrow, editDog, currentEdit, editEdit, editPlay, editSave;
     Array<SimpleGameObject> editButtons;
     SimpleGameObject levelComplete, levelLose, starBig, starSmall1, starSmall2, btnHome, btnLevels, btnReload, btnNext;
+    InfoWindow levelInfo;
 
     Box currentBox;
 
@@ -249,6 +252,18 @@ public class LabyrintScreenController extends Controller {
         levelLose.position.y = posMiddleY(levelLose);
         levelLose.visible = false;
         addGameObject(levelLose);
+
+        levelInfo = new InfoWindow();
+        levelInfo.position.x = posMiddleX(levelInfo);
+        levelInfo.position.y = posMiddleY(levelInfo);
+        levelInfo.visible = false;
+        addGameObject(levelInfo);
+
+        btnBuyHint = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_BUY_HINT));
+        btnBuyHint.position.x = posMiddleX(btnBuyHint);
+        btnBuyHint.position.y = 100;
+        btnBuyHint.visible = false;
+        addGameObject(btnBuyHint);
 
         starBig = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.STAR_BIG));
         starBig.position.x = 557;
@@ -432,11 +447,11 @@ public class LabyrintScreenController extends Controller {
 
         if (showHelp) {
             mode = MODE_HELP;
-            Cache.backgroundBlack.visible = true;
+            //Cache.backgroundBlack.visible = true;
             Cache.backgroundHelp.visible = true;
         } else {
             mode = MODE_PLAYER;
-            Cache.backgroundBlack.visible = false;
+            //Cache.backgroundBlack.visible = false;
             Cache.backgroundHelp.visible = false;
         }
 
@@ -861,7 +876,7 @@ public class LabyrintScreenController extends Controller {
                             currentBox = (Box) object;
                             break;
                         } else if (object == btnHint) {
-                            showHint();
+                            showInfo();
                             break;
                         }
                     }
@@ -925,11 +940,54 @@ public class LabyrintScreenController extends Controller {
                     setHelpItemsInvisible();
                     mode = MODE_PLAYER;
                 }
+            } else if (mode == MODE_INFO) {
+                boolean close = true;
+                Array<AbstractGameObject> list = touchedGameObjects(x, y);
+                for (AbstractGameObject object : list) {
+                    if (object.equals(btnBuyHint)) {
+                        buyHint();
+
+                    }
+                    if (object.equals(levelInfo)) {
+                        close = false;
+                    }
+                }
+
+                if (close) {
+                    closeInfo();
+                }
 
             } else if (isEditing) {
                 touchEditing(x, y);
             }
         }
+    }
+
+    private void buyHint() {
+        int treasure = ((MerlinGame) game).getTreasure();
+        if (treasure >= 3) {
+            ((MerlinGame) game).setTreasure(treasure - 3);
+            closeInfo();
+            showHint();
+        }
+
+    }
+
+    private void showInfo() {
+        int treasure = ((MerlinGame) game).getTreasure();
+        System.out.println("Treasure: " + treasure);
+        mode = MODE_INFO;
+        Cache.backgroundBlack.visible = true;
+        levelInfo.setText(Integer.toString(treasure));
+        levelInfo.visible = true;
+        btnBuyHint.visible = true;
+    }
+
+    private void closeInfo() {
+        Cache.backgroundBlack.visible = false;
+        levelInfo.visible = false;
+        btnBuyHint.visible = false;
+        mode = MODE_PLAYER;
     }
 
     private void showHint() {
