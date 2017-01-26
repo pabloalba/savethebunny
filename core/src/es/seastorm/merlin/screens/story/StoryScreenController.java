@@ -72,7 +72,7 @@ public class StoryScreenController extends Controller {
         }
 
 
-        phase1 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE1), 1, levels + "/" + Constants.LEVEL_LIST[0].length, "Dog's life", 150, 400);
+        phase1 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE1), 1, levels + "/" + Constants.LEVEL_LIST[0].length, MerlinGame.textBundle.get("DOGS_LIFE"), 150, 400);
         addGameObject(phase1);
 
         levels = 0;
@@ -82,7 +82,7 @@ public class StoryScreenController extends Controller {
             }
         }
 
-        phase2 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE2), 2, levels + "/" + Constants.LEVEL_LIST[1].length, "Foxy time", 755, 400);
+        phase2 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE2), 2, levels + "/" + Constants.LEVEL_LIST[1].length, MerlinGame.textBundle.get("FOXY_TIME"), 755, 400);
         addGameObject(phase2);
 
         levels = 0;
@@ -93,7 +93,7 @@ public class StoryScreenController extends Controller {
         }
 
 
-        phase3 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE3), 3, levels + "/" + Constants.LEVEL_LIST[2].length, "Double it", 150, 20);
+        phase3 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE3), 3, levels + "/" + Constants.LEVEL_LIST[2].length, MerlinGame.textBundle.get("DOUBLE_IT"), 150, 20);
         addGameObject(phase3);
 
         levels = 0;
@@ -103,7 +103,7 @@ public class StoryScreenController extends Controller {
             }
         }
 
-        phase4 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE4), 4, levels + "/" + Constants.LEVEL_LIST[3].length, "All in", 755, 20);
+        phase4 = new PhaseItem(GameAssets.instance.getTextureRegion(GameAssets.BTN_PHASE4), 4, levels + "/" + Constants.LEVEL_LIST[3].length, MerlinGame.textBundle.get("ALL_IN"), 755, 20);
         addGameObject(phase4);
 
         createButtons();
