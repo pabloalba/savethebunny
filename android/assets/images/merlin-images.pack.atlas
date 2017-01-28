@@ -6,21 +6,21 @@ filter: Nearest,Nearest
 repeat: none
 arrow_left
   rotate: false
-  xy: 1907, 1475
+  xy: 1907, 1450
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 arrow_right
   rotate: false
-  xy: 1253, 631
+  xy: 1253, 606
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 barrier_h
   rotate: false
-  xy: 651, 1298
+  xy: 651, 1273
   size: 80, 28
   orig: 80, 28
   offset: 0, 0
@@ -34,21 +34,21 @@ barrier_v
   index: -1
 btn_buy_hint
   rotate: false
-  xy: 370, 527
-  size: 243, 83
-  orig: 243, 83
+  xy: 370, 521
+  size: 264, 64
+  orig: 264, 64
   offset: 0, 0
   index: -1
 btn_fx
   rotate: false
-  xy: 1253, 807
+  xy: 1253, 782
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_fx_off
   rotate: false
-  xy: 1907, 1558
+  xy: 1907, 1533
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
@@ -69,7 +69,7 @@ btn_home
   index: -1
 btn_level0
   rotate: false
-  xy: 1420, 1178
+  xy: 1420, 1153
   size: 104, 114
   orig: 104, 114
   offset: 0, 0
@@ -83,28 +83,28 @@ btn_level1
   index: -1
 btn_level2
   rotate: false
-  xy: 509, 411
+  xy: 503, 405
   size: 104, 114
   orig: 104, 114
   offset: 0, 0
   index: -1
 btn_level3
   rotate: false
-  xy: 1253, 900
+  xy: 1253, 875
   size: 104, 114
   orig: 104, 114
   offset: 0, 0
   index: -1
 btn_levels
   rotate: false
-  xy: 615, 514
+  xy: 1375, 1030
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 btn_lock
   rotate: false
-  xy: 1907, 1651
+  xy: 1907, 1626
   size: 104, 114
   orig: 104, 114
   offset: 0, 0
@@ -118,252 +118,252 @@ btn_music
   index: -1
 btn_music_off
   rotate: false
-  xy: 1253, 714
+  xy: 1253, 689
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_next
   rotate: false
-  xy: 615, 431
+  xy: 1526, 1126
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 btn_play
   rotate: false
-  xy: 1539, 1234
+  xy: 1539, 1209
   size: 410, 196
   orig: 410, 196
   offset: 0, 0
   index: -1
 btn_reload
   rotate: false
-  xy: 697, 514
+  xy: 1608, 1126
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 bunny
   rotate: false
-  xy: 697, 432
+  xy: 1690, 1127
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 burrow
   rotate: false
-  xy: 779, 515
+  xy: 1772, 1127
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 dog1
   rotate: false
-  xy: 779, 433
+  xy: 1854, 1127
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 dog2
   rotate: false
-  xy: 861, 515
+  xy: 1375, 948
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_edit
   rotate: false
-  xy: 861, 433
+  xy: 1359, 866
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor1
   rotate: false
-  xy: 943, 515
+  xy: 1345, 784
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor2
   rotate: false
-  xy: 943, 433
+  xy: 1345, 702
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor3
   rotate: false
-  xy: 1025, 515
+  xy: 636, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor4
   rotate: false
-  xy: 1025, 433
+  xy: 718, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_play
   rotate: false
-  xy: 1107, 515
+  xy: 800, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_save
   rotate: false
-  xy: 1107, 433
+  xy: 882, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 floor1
   rotate: false
-  xy: 1189, 515
+  xy: 964, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 floor2
   rotate: false
-  xy: 1189, 433
+  xy: 1046, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 fox
   rotate: false
-  xy: 1375, 1056
+  xy: 1128, 490
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 help
   rotate: false
-  xy: 1253, 1016
+  xy: 1253, 991
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 level_complete
   rotate: false
-  xy: 2, 612
+  xy: 2, 587
   size: 647, 714
   orig: 647, 714
   offset: 0, 0
   index: -1
 level_info
   rotate: false
-  xy: 921, 1294
+  xy: 921, 1269
   size: 616, 714
   orig: 616, 714
   offset: 0, 0
   index: -1
 level_lose
   rotate: false
-  xy: 651, 597
+  xy: 651, 572
   size: 600, 695
   orig: 600, 695
   offset: 0, 0
   index: -1
 level_select_bg
   rotate: false
-  xy: 2, 1328
+  xy: 2, 1303
   size: 917, 680
   orig: 917, 680
   offset: 0, 0
   index: -1
 phase1
   rotate: false
-  xy: 1539, 1721
+  xy: 1539, 1696
   size: 366, 287
   orig: 366, 287
   offset: 0, 0
   index: -1
 phase2
   rotate: false
-  xy: 2, 323
+  xy: 2, 298
   size: 366, 287
   orig: 366, 287
   offset: 0, 0
   index: -1
 phase3
   rotate: false
-  xy: 1539, 1432
+  xy: 1539, 1407
   size: 366, 287
   orig: 366, 287
   offset: 0, 0
   index: -1
 phase4
   rotate: false
-  xy: 2, 34
+  xy: 2, 9
   size: 366, 287
   orig: 366, 287
   offset: 0, 0
   index: -1
 shadow
   rotate: false
-  xy: 1526, 1152
+  xy: 609, 408
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 square
   rotate: false
-  xy: 1608, 1159
+  xy: 691, 415
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow1
   rotate: false
-  xy: 1683, 1159
+  xy: 766, 415
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow2
   rotate: false
-  xy: 1758, 1159
+  xy: 841, 415
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow3
   rotate: false
-  xy: 1833, 1159
+  xy: 916, 415
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow4
   rotate: false
-  xy: 1908, 1159
+  xy: 991, 415
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow5
   rotate: false
-  xy: 1375, 981
+  xy: 1066, 415
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 star_big
   rotate: false
-  xy: 1253, 1138
+  xy: 1253, 1113
   size: 165, 154
   orig: 165, 154
   offset: 0, 0
   index: -1
 star_big2
   rotate: false
-  xy: 1907, 1880
+  xy: 1907, 1855
   size: 137, 128
   orig: 137, 128
   offset: 0, 0
@@ -371,13 +371,13 @@ star_big2
 star_small
   rotate: false
   xy: 370, 397
-  size: 137, 128
-  orig: 137, 128
+  size: 131, 122
+  orig: 131, 122
   offset: 0, 0
   index: -1
 star_small2
   rotate: false
-  xy: 1907, 1767
+  xy: 1907, 1742
   size: 120, 111
   orig: 120, 111
   offset: 0, 0

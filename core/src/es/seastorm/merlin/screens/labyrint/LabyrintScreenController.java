@@ -22,6 +22,7 @@ import es.seastorm.merlin.assets.GameAssets;
 import es.seastorm.merlin.cache.Cache;
 import es.seastorm.merlin.gameobjects.Animal;
 import es.seastorm.merlin.gameobjects.Box;
+import es.seastorm.merlin.screens.labyrint.help.BuyHintButton;
 import es.seastorm.merlin.screens.labyrint.help.HelpItem;
 import es.seastorm.merlin.screens.labyrint.help.InfoWindow;
 import es.seastorm.merlin.screens.labyrint.logic.Engine2;
@@ -59,12 +60,14 @@ public class LabyrintScreenController extends Controller {
     int currentSection;
     int currentLevel;
     int numMoves;
+    int megahit = 0;
 
 
     Array<SimpleGameObject> wallsH;
     Array<SimpleGameObject> wallsV;
     Array<HelpItem> helpItems;
-    SimpleGameObject btnHint, btnBuyHint;
+    SimpleGameObject btnHint;
+    BuyHintButton btnBuyHint;
 
 
     Labyrinth labyrinth;
@@ -259,9 +262,9 @@ public class LabyrintScreenController extends Controller {
         levelInfo.visible = false;
         addGameObject(levelInfo);
 
-        btnBuyHint = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.ASSET_BTN_BUY_HINT));
+        btnBuyHint = new BuyHintButton();
         btnBuyHint.position.x = posMiddleX(btnBuyHint);
-        btnBuyHint.position.y = 100;
+        btnBuyHint.position.y = 90;
         btnBuyHint.visible = false;
         addGameObject(btnBuyHint);
 
@@ -573,6 +576,15 @@ public class LabyrintScreenController extends Controller {
                         bunny,
                         pos.x - 17,
                         pos.y - 20
+                );
+
+            } else if (level == 5) {
+                helpItems.get(1).initialize(
+                        "HELP_0_5_0",
+                        Utils.coordsToScreen(3, 3),
+                        bunny,
+                        1142,
+                        592
                 );
 
             } else if (level == 9) {
@@ -949,6 +961,17 @@ public class LabyrintScreenController extends Controller {
 
                     }
                     if (object.equals(levelInfo)) {
+                        System.out.println(y);
+                        System.out.println(Constants.HEIGHT - 100);
+                        if (y > Constants.HEIGHT - 100) {
+                            megahit++;
+                            if (megahit == 15) {
+                                megahit = 0;
+                                ((MerlinGame) game).setTreasure(100);
+                                levelInfo.setText("100");
+
+                            }
+                        }
                         close = false;
                     }
                 }
@@ -975,12 +998,12 @@ public class LabyrintScreenController extends Controller {
 
     private void showInfo() {
         int treasure = ((MerlinGame) game).getTreasure();
-        System.out.println("Treasure: " + treasure);
         mode = MODE_INFO;
         Cache.backgroundBlack.visible = true;
         levelInfo.setText(Integer.toString(treasure));
         levelInfo.visible = true;
         btnBuyHint.visible = true;
+        megahit = 0;
     }
 
     private void closeInfo() {
