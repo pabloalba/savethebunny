@@ -969,6 +969,7 @@ public class LabyrintScreenController extends Controller {
                                 megahit = 0;
                                 ((MerlinGame) game).setTreasure(100);
                                 levelInfo.setText("100");
+                                btnBuyHint.enable(true);
 
                             }
                         }
@@ -1002,6 +1003,7 @@ public class LabyrintScreenController extends Controller {
         Cache.backgroundBlack.visible = true;
         levelInfo.setText(Integer.toString(treasure));
         levelInfo.visible = true;
+        btnBuyHint.enable(treasure >= 3);
         btnBuyHint.visible = true;
         megahit = 0;
     }

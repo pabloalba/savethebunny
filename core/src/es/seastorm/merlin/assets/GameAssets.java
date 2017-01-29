@@ -57,6 +57,7 @@ public class GameAssets extends AssetsKeeper {
     public static final String SQUARE_GLOW5 = "square_glow5";
     public static final String ASSET_BTN_HINT = "btn_hint";
     public static final String ASSET_BTN_BUY_HINT = "btn_buy_hint";
+    public static final String ASSET_BTN_BUY_HINT_DISABLED = "btn_buy_hint_disabled";
 
 
     public static final GameAssets instance = new GameAssets();
