@@ -21,10 +21,10 @@ public class PhaseItem extends SimpleGameObject {
         this.position.y = positionY;
         this.title = title;
         this.subtitle = subtitle;
-        this.titleX = this.position.x + (this.dimension.x /2) - (title.length() * 10);
-        this.titleY = this.position.y + this.dimension.y - 5;
+        this.titleX = this.position.x + (this.dimension.x / 2) - (title.length() * 10);
+        this.titleY = this.position.y + this.dimension.y - 10;
 
-        this.subtitleX = this.position.x + (this.dimension.x /2) - (subtitle.length() * 10);
+        this.subtitleX = this.position.x + (this.dimension.x / 2) - (subtitle.length() * 10);
         this.subtitleY = this.position.y + 50;
     }
 
