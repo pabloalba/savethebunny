@@ -389,10 +389,10 @@ public class LabyrintScreenController extends Controller {
         ArrayList<Integer> bestSolution = null;
         int i = 0;
         setHelpItemsInvisible();
-        int size = 4 + random.nextInt(5);
+        int size = 5 + random.nextInt(3);
         while (bestSolution == null) {
             System.out.println("---------> " + (i++));
-            labyrinth = createRandomLabyrint(size, size, 1);
+            labyrinth = createRandomLabyrint(size, size, 2);
             drawLabyrint();
             engine.minMoves = 10 + labyrinth.getHeight();
             bestSolution = engine.startSolveGame(labyrinth, false);
@@ -416,7 +416,7 @@ public class LabyrintScreenController extends Controller {
             mode = MODE_EDIT;
         } else {
             if (generateRandom) {
-                int numGenerate = 9;
+                int numGenerate = 1;
                 String[] llist = new String[numGenerate];
                 for (int i = 0; i < numGenerate; i++) {
                     labyrinth = generateValidRandomLabyrint();
@@ -963,8 +963,6 @@ public class LabyrintScreenController extends Controller {
 
                     }
                     if (object.equals(levelInfo)) {
-                        System.out.println(y);
-                        System.out.println(Constants.HEIGHT - 100);
                         if (y > Constants.HEIGHT - 100) {
                             megahit++;
                             if (megahit == 15) {
@@ -1062,7 +1060,7 @@ public class LabyrintScreenController extends Controller {
             } else if (editEdit.equals(btn)) {
                 reset(0, 0);
             } else if (editSave.equals(btn)) {
-                System.out.print("Saving!!!");
+                System.out.println("Saving!!!");
                 serializeLabyrint();
                 touchBtn = true;
             }
@@ -1191,7 +1189,7 @@ public class LabyrintScreenController extends Controller {
         if (numEnemies == 2) {
             labyrinth.enemy[1] = random.nextInt(3);
             while (labyrinth.enemy[0] == labyrinth.enemy[1]) {
-                labyrinth.enemy[1] = random.nextInt(3);
+                labyrinth.enemy[1] = 2;//random.nextInt(3);
             }
 
             if (labyrinth.enemy[1] < labyrinth.enemy[0]) {
@@ -1217,8 +1215,13 @@ public class LabyrintScreenController extends Controller {
         labyrinth.enemyPosition[0].y = random.nextInt(height) + despY;
 
         if (numEnemies == 2) {
-            labyrinth.enemyPosition[1].x = random.nextInt(width) + despX;
-            labyrinth.enemyPosition[1].y = random.nextInt(height) + despY;
+            boolean ok = false;
+            while (!ok) {
+                labyrinth.enemyPosition[1].x = random.nextInt(width) + despX;
+                labyrinth.enemyPosition[1].y = random.nextInt(height) + despY;
+
+                ok = (labyrinth.enemyPosition[0].x != labyrinth.enemyPosition[1].x) || (labyrinth.enemyPosition[0].y != labyrinth.enemyPosition[1].y);
+            }
         }
 
 

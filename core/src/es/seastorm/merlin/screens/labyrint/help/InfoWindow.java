@@ -30,9 +30,9 @@ public class InfoWindow extends SimpleGameObject {
 
         if (this.visible && this.text != null) {
             float x = this.position.x + this.dimension.x / 2 - (10 * title[0].length());
-            Cache.font.draw(batch, title[0], x, this.position.y + 500);
+            Cache.font.draw(batch, title[0], x, this.position.y + 480);
             x = this.position.x + this.dimension.x / 2 - (10 * title[1].length());
-            Cache.font.draw(batch, title[1], x, this.position.y + 465);
+            Cache.font.draw(batch, title[1], x, this.position.y + 445);
 
 
             x = this.position.x + this.dimension.x / 2 - (10 * explanation[0].length());

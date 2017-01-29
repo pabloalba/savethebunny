@@ -31,7 +31,6 @@ public class MerlinGame extends Game {
     public int currentPhase = -1;
     public int currentFirstLevel = -1;
 
-
     public MenuScreen getMenuScreen() {
         if (menuScreen == null) {
             menuScreen = new MenuScreen(this);
@@ -90,7 +89,7 @@ public class MerlinGame extends Game {
     }
 
     public void loadLabyrintScreen(int section, int level) {
-        System.out.println("loadLabyrintScreen " + section + " - " + level);
+        //System.out.println("loadLabyrintScreen " + section + " - " + level);
         getLabyrintScreen().level = level;
         getLabyrintScreen().section = section;
         setScreen(getLabyrintScreen());

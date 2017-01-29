@@ -202,7 +202,7 @@ public class StoryScreenController extends Controller {
     }
 
     private void move(int desp) {
-        System.out.println(desp);
+        //System.out.println(desp);
         firstLevel += desp;
         ((MerlinGame) game).currentFirstLevel = firstLevel;
         updateButtons();
@@ -269,7 +269,7 @@ public class StoryScreenController extends Controller {
     }
 
     private void loadStory(int story) {
-        System.out.println("Load Story: " + story);
+        //System.out.println("Load Story: " + story);
         if ((story > -1) && (((MerlinGame) game).maxLevel[phaseNum] >= story)) {
             ((MerlinGame) game).loadLabyrintScreen(phaseNum, story);
         }

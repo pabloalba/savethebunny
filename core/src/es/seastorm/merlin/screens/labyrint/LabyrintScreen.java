@@ -22,13 +22,12 @@ public class LabyrintScreen extends AbstractGameScreen {
         return game;
     }
 
-
     @Override
     public void show() {
         controller = getController();
         renderer = getRenderer();
         reset();
-        System.out.println("Post reset");
+        //System.out.println("Post reset");
         super.show(controller, renderer);
     }
 
