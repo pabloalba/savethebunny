@@ -25,6 +25,7 @@ import es.seastorm.merlin.gameobjects.Box;
 import es.seastorm.merlin.screens.labyrint.help.BuyHintButton;
 import es.seastorm.merlin.screens.labyrint.help.HelpItem;
 import es.seastorm.merlin.screens.labyrint.help.InfoWindow;
+import es.seastorm.merlin.screens.labyrint.help.LoseWindow;
 import es.seastorm.merlin.screens.labyrint.logic.Engine2;
 import es.seastorm.merlin.screens.labyrint.logic.Labyrinth;
 import es.seastorm.merlin.screens.labyrint.logic.Square;
@@ -74,8 +75,9 @@ public class LabyrintScreenController extends Controller {
 
     SimpleGameObject editFloor1, editFloor2, editFloor3, editFloor4, editMerlin, editBurrow, editDog, currentEdit, editEdit, editPlay, editSave;
     Array<SimpleGameObject> editButtons;
-    SimpleGameObject levelComplete, levelLose, starBig, starSmall1, starSmall2, btnHome, btnLevels, btnReload, btnNext;
+    SimpleGameObject levelComplete, starBig, starSmall1, starSmall2, btnHome, btnLevels, btnReload, btnNext;
     InfoWindow levelInfo;
+    LoseWindow levelLose;
 
     Box currentBox;
 
@@ -250,7 +252,7 @@ public class LabyrintScreenController extends Controller {
         levelComplete.visible = false;
         addGameObject(levelComplete);
 
-        levelLose = new SimpleGameObject(GameAssets.instance.getTextureRegion(GameAssets.LEVEL_LOSE));
+        levelLose = new LoseWindow();
         levelLose.position.x = posMiddleX(levelLose);
         levelLose.position.y = posMiddleY(levelLose);
         levelLose.visible = false;
@@ -581,7 +583,7 @@ public class LabyrintScreenController extends Controller {
             } else if (level == 5) {
                 helpItems.get(1).initialize(
                         "HELP_0_5_0",
-                        Utils.coordsToScreen(3, 3),
+                        Utils.coordsToScreen(3, 4),
                         bunny,
                         1142,
                         592

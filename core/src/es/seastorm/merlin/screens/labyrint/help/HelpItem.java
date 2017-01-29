@@ -56,7 +56,7 @@ public class HelpItem extends SimpleGameObject {
             for (String line : lines) {
                 float x = 640 - (10 * line.length());
                 Cache.font.draw(batch, line, x, y);
-                y -= 34;
+                y -= 30;
             }
         }
     }
