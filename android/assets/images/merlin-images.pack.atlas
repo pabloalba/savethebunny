@@ -6,14 +6,14 @@ filter: Nearest,Nearest
 repeat: none
 arrow_left
   rotate: false
-  xy: 1907, 1509
+  xy: 1253, 655
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 arrow_right
   rotate: false
-  xy: 1253, 665
+  xy: 370, 61
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
@@ -27,7 +27,7 @@ barrier_h
   index: -1
 barrier_v
   rotate: false
-  xy: 476, 374
+  xy: 1210, 549
   size: 24, 80
   orig: 24, 80
   offset: 0, 0
@@ -48,14 +48,14 @@ btn_buy_hint_disabled
   index: -1
 btn_fx
   rotate: false
-  xy: 1253, 841
+  xy: 1907, 1592
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_fx_off
   rotate: false
-  xy: 1907, 1592
+  xy: 370, 144
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
@@ -69,7 +69,7 @@ btn_hint
   index: -1
 btn_home
   rotate: false
-  xy: 370, 61
+  xy: 1375, 1089
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
@@ -104,7 +104,14 @@ btn_level3
   index: -1
 btn_levels
   rotate: false
-  xy: 1375, 1089
+  xy: 1253, 831
+  size: 100, 101
+  orig: 100, 101
+  offset: 0, 0
+  index: 100
+btn_levels
+  rotate: false
+  xy: 1526, 1185
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
@@ -118,21 +125,21 @@ btn_lock
   index: -1
 btn_music
   rotate: false
-  xy: 370, 144
+  xy: 1253, 738
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_music_off
   rotate: false
-  xy: 1253, 748
+  xy: 1907, 1499
   size: 90, 91
   orig: 90, 91
   offset: 0, 0
   index: -1
 btn_next
   rotate: false
-  xy: 1526, 1185
+  xy: 1608, 1185
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
@@ -146,105 +153,105 @@ btn_play
   index: -1
 btn_reload
   rotate: false
-  xy: 1608, 1185
+  xy: 1690, 1185
   size: 80, 81
   orig: 80, 81
   offset: 0, 0
   index: -1
 bunny
   rotate: false
-  xy: 1690, 1186
+  xy: 1772, 1186
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 burrow
   rotate: false
-  xy: 1772, 1186
+  xy: 1854, 1186
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 dog1
   rotate: false
-  xy: 1854, 1186
+  xy: 1375, 1007
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 dog2
   rotate: false
-  xy: 1375, 1007
+  xy: 1359, 925
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_edit
   rotate: false
-  xy: 1359, 925
+  xy: 1355, 843
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor1
   rotate: false
-  xy: 1345, 843
+  xy: 636, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor2
   rotate: false
-  xy: 1345, 761
+  xy: 718, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor3
   rotate: false
-  xy: 636, 549
+  xy: 800, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_floor4
   rotate: false
-  xy: 718, 549
+  xy: 882, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_play
   rotate: false
-  xy: 800, 549
+  xy: 964, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 edit_save
   rotate: false
-  xy: 882, 549
+  xy: 1046, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 floor1
   rotate: false
-  xy: 964, 549
+  xy: 1128, 549
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 floor2
   rotate: false
-  xy: 1046, 549
+  xy: 609, 467
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 fox
   rotate: false
-  xy: 1128, 549
+  xy: 691, 467
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
@@ -314,49 +321,49 @@ phase4
   index: -1
 shadow
   rotate: false
-  xy: 609, 467
+  xy: 773, 467
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
 square
   rotate: false
-  xy: 691, 474
+  xy: 855, 474
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow1
   rotate: false
-  xy: 766, 474
+  xy: 930, 474
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow2
   rotate: false
-  xy: 841, 474
+  xy: 1005, 474
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow3
   rotate: false
-  xy: 916, 474
+  xy: 1080, 474
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow4
   rotate: false
-  xy: 991, 474
+  xy: 1155, 474
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
   index: -1
 square_glow5
   rotate: false
-  xy: 1066, 474
+  xy: 476, 381
   size: 73, 73
   orig: 73, 73
   offset: 0, 0
